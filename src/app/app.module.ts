@@ -23,6 +23,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ProPhotoComponent } from './pro-photo/pro-photo.component';
 // import { HashLocationStrategy, LocationStrategy,PathLocationStrategy } from '@angular/common'; //LocationStrategy is used to refresh page after deployment
 import { LightboxModule } from 'ngx-lightbox';
+import * as fileSaver from 'file-saver';
 
 @NgModule({
   declarations: [
