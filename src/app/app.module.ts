@@ -21,7 +21,7 @@ import { EmpEditModalComponent } from './emp-edit-modal/emp-edit-modal.component
 import { EmployeeSearchComponent } from './employee-search/employee-search.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProPhotoComponent } from './pro-photo/pro-photo.component';
-import { HashLocationStrategy, LocationStrategy,PathLocationStrategy } from '@angular/common'; //LocationStrategy is used to refresh page after deployment
+// import { HashLocationStrategy, LocationStrategy,PathLocationStrategy } from '@angular/common'; //LocationStrategy is used to refresh page after deployment
 import { LightboxModule } from 'ngx-lightbox';
 // import * as fileSaver from 'file-saver';
 
@@ -53,9 +53,9 @@ import { LightboxModule } from 'ngx-lightbox';
     LightboxModule 
 
   ],
-  // providers: [AuthInterceptorProvider,DatePipe], // datepipe used to convert date format to show in html date element
+  providers: [AuthInterceptorProvider,DatePipe], // datepipe used to convert date format to show in html date element
   //LocationStrategy is used to refresh page after deployment with htaccess file
-    providers: [AuthInterceptorProvider,DatePipe,{provide: LocationStrategy, useClass: PathLocationStrategy} ], // datepipe used to convert date format to show in html date element
+    // providers: [AuthInterceptorProvider,DatePipe,{provide: LocationStrategy, useClass: PathLocationStrategy} ], // datepipe used to convert date format to show in html date element
 
   // providers: [AuthInterceptorProvider,DatePipe,{provide: LocationStrategy, useClass: HashLocationStrategy} ], // datepipe used to convert date format to show in html date element
   bootstrap: [AppComponent]
