@@ -96,7 +96,7 @@ export class ProPhotoComponent {
     this.dynamicimagepath = '' + this.commonService.baseUrl + '/img/prophoto/' + item;
     // this.open(index-1);
     this.clickedIndexOfDt = index;//-1; // save the clicked index to use by right photo to open current image in gallery
-    this.loading=true;
+    this.loading=false;
   }
 
   // *****************************************************************************************************************************
