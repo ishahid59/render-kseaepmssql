@@ -53,14 +53,14 @@
    
    
         <!-- LOADING IMAGE DIV  -->
-        <div *ngIf="loading" class="loading-container" style="width: 100%;min-height:368px;
+        <div *ngIf="loading" class="loading-container" style="width: 100%;min-height:366px;height:100%;
                  background-color: #ddd;
                  opacity:.9;
                  position: absolute;
                  z-index: 3;
-                 padding-top: 75px;">
+                 padding-top:75px;">
           <img class="imgloading"
-            style="display: block; margin-left: auto;margin-right: auto;margin:auto"
+            style="display: block;max-height: 338px; margin-left: auto;margin-right: auto;max-height: 366px !important;"
             src="/assets/images/loading.gif" />
         </div>
    <!-- END LOADING IMAGE DIV  -->
