@@ -36,12 +36,12 @@
 
 
 #https://ndreznotanto.medium.com/remove-hash-at-url-angular-and-still-be-able-to-refresh-and-not-getting-404-not-found-970312a6e828
-<IfModule mod_rewrite.c>
-# #   RewriteEngine On
+# <IfModule mod_rewrite.c>
+RewriteEngine On
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR] 
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d 
 RewriteRule ^.*$ — [NC,L] 
 RewriteRule ^(.*) index.html [NC,L]
-</IfModule>
+# </IfModule>
 

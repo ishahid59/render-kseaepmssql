@@ -48,7 +48,7 @@ const routes: Routes = [
 
 @NgModule({
   // imports: [RouterModule.forRoot(routes)], // Default is hash:false. Refresh wont work in deployment
-  imports: [RouterModule.forRoot(routes, { useHash: true })], //https://stackoverflow.com/questions/65828232/how-can-i-prevent-404-not-found-error-in-angular-when-i-refresh-page
+  imports: [RouterModule.forRoot(routes, { useHash: false })], //https://stackoverflow.com/questions/65828232/how-can-i-prevent-404-not-found-error-in-angular-when-i-refresh-page
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
