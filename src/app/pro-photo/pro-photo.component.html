@@ -49,6 +49,27 @@
   </div>
 
   <div class="col-sm-6" style=" min-height:338px; padding:0px; float:right;margin-top:6px;margin-left:0px;margin-right:0px; background-color:#ddd">
+   
+   
+   
+        <!-- LOADING IMAGE DIV  -->
+        <div *ngIf="loading" class="loading-container" style="width: 100%;min-height:368px;
+                 background-color: #ddd;
+                 opacity:.9;
+                 position: absolute;
+                 z-index: 3;
+                 padding-top: 75px;">
+          <img class="imgloading"
+            style="display: block; margin-left: auto;margin-right: auto;margin:auto"
+            src="/assets/images/loading.gif" />
+        </div>
+   <!-- END LOADING IMAGE DIV  -->
+   
+   
+   
+   
+   
+   
     <img [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)">
 
     <!-- <div *ngFor="let image of _albums; let i=index">

@@ -33,6 +33,7 @@ export class ProPhotoComponent {
   proPhotoData: any = []; // in angular should ([]) for array
   formErrors: any = [{}];
   loading2: boolean = false;
+  loading: boolean = false;
   componentLoaded = false;
 
   dynamicimagepath: any = "";
@@ -90,10 +91,12 @@ export class ProPhotoComponent {
 
   //for gallery https://www.youtube.com/watch?v=WVkbpfux13E&list=PL5RuyRApxAq4yFHaf8nz2rLBSN3_Ihott&index=54&t=34s
   loadImageOnClick(item: any, index: any) {
+    this.loading=true;
     // this.dynamicimagepath = this.$host + "img/prophoto/" + this.formdata.ImageData
     this.dynamicimagepath = '' + this.commonService.baseUrl + '/img/prophoto/' + item;
     // this.open(index-1);
     this.clickedIndexOfDt = index;//-1; // save the clicked index to use by right photo to open current image in gallery
+    this.loading=true;
   }
 
   // *****************************************************************************************************************************
