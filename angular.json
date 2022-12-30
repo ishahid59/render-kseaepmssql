@@ -22,9 +22,9 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
               // if htaccess is used for production to refresh page
-              // "src/.htaccess" 
+              "src/.htaccess" 
             ],
             "styles": [
               "src/styles.css",
