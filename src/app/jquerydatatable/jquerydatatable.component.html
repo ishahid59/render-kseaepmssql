@@ -1,0 +1,321 @@
+
+  <div>
+    <a (click)="openAddModal()" data-toggle="modal" data-target="#empaddmodal" type="button" class="btn btn-outline-dark pull-right btn-sm "
+      style="margin-left:4px;margin-bottom:8px;color:#006fae; border-color: #959595;" data-toggle="modal"
+      data-target="#empeditmodal"> <span aria-hidden="true" class="glyphicon glyphicon-plus" style="color:#006fae"></span>
+      Add new</a>
+    <a (click)="clearSearch()" style="margin-left:4px;border-color: #959595;color:#006fae;" type="button" id="reset"
+      class="btn btn-outline-dark pull-right btn-sm"><span aria-hidden="true" class="glyphicon glyphicon-refresh"
+        style="color:#006fae"></span> Reset</a>
+  </div>
+
+  <h2 style="margin-top: 18px;margin-bottom: 5px;font-weight: bold;color: rgb(91, 91, 91);;">Angular-Jquery-Datatable
+  </h2>
+
+<!-- <div class="container" style="background-color: #f1f3f4;padding-left: 25px;padding-right: 25px;padding-bottom: 50px;"> -->
+<div class="container" style="background-color: #f1f3f4;border:1px solid #337ab7; padding: 5px; margin: 0px;width:100%">
+
+
+
+
+  <!-- Search form -->
+  <!-- =================================================================================================== -->
+
+  <div  style="border: 1px solid #bbbbbb; padding:15px;min-height: 212px !important;">
+
+
+
+    <!-- LOADING IMAGE DIV  -->
+    <div *ngIf="loading2" class="loading-container" style="width: 100%;
+          background-color: transparent;
+          opacity:1;
+          position: absolute;
+          z-index: 3;
+
+
+          left: 90px;
+          padding-top: 0px;">
+      <img class="imgloading" style="padding-left:72px;display: block; margin-left: auto;margin-right: auto;"
+        src="/assets/images/loading.gif" />
+    </div>
+    <!-- END LOADING IMAGE DIV  -->
+
+
+  <!-- <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">FirstName</label>
+    <div class="col-sm-10">
+      <input type="text" [(ngModel)]="searchFirstname" class="form-control form-control-sm" id="myinput3">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">LastName</label>
+    <div class="col-sm-10">
+      <input type="text" [(ngModel)]="searchLastname" class="form-control form-control-sm" id="srcLastname">
+    </div>
+  </div> -->
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Jobtitle</label>
+    <div class="col-sm-10">
+      <select id="cars" [(ngModel)]="searchJobtitle" class="form-control form-control-sm">
+        <option *ngFor="let item of cmbJobtitle" [value]="item.ListID">{{item.Str1}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Registration</label>
+    <div class="col-sm-10">
+      <select id="cars" [(ngModel)]="searchRegistration" class="form-control form-control-sm">
+        <option *ngFor="let item of cmbRegistration" [value]="item.ListID">{{item.Str1}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div style="float: right; margin-top: 8px;">
+    <button class="btn btn-outline-dark  btn-sm " style="margin-top: 10px;;margin-top: 0px; border: 1px solid #959595;"
+      (click)="clearSearch()">Clear Search</button>
+    <button class="btn btn-primary  btn-sm " style="width:112px;margin-top: 10px; ;margin-top: 0px;margin-left: 8px;"
+      (click)="searchJqueryTable()">Search</button>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+  <table id="jquerydatatable" class="row-border hover table table-bordered table-striped" style="border:1px solid #c4c4c4">
+    <thead class="" style="border:1px solid red">
+      <tr class="bg-primary">
+        <!-- <th scope="col">EmpId</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th> -->
+        <th scope="col">EmployeeID</th>
+        <th scope="col">Jobtitle</th>
+        <th scope="col">Registration</th>
+        <th scope="col">HireDate</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+
+  </table>
+
+<!-- 
+  <br />
+  <br /> -->
+
+  <!-- Jquery Test within Angular function -->
+  <!-- <div style="border:1px solid red; padding: 10px; margin-top: 70px;">
+    <h4>Jquery Test within Angular function</h4>
+    <button (click)="testJquery()" id="mybtn">show hide jquery</button>
+    <h1 id="myh1" style="color:blue">SHOW/HIDE with jquery</h1>
+  </div> -->
+
+
+  <!-- Button trigger modal -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#empeditmodal">
+    Launch demo modal
+  </button> -->
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="empeditmodal" tabindex="-1" role="dialog" aria-labelledby="empeditmodalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:700px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="empeditmodalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Hello from Id: {{modalData}} -->
+
+          <!-- https://www.youtube.com/watch?v=Wr5urqswiko&list=PLQcBFrxTul9IQFF7fJz7jgdRYJz1OCbll&index=6 -->
+          <form [formGroup]="employeeFormGroup" (ngSubmit)="updateEmp()">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Emp Id</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm" formControlName="EmpID" id="empid" name="empid"
+                  placeholder="" [(ngModel)]="editData.EmpID" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm " formControlName="Firstname" id="firstname"
+                  name="firstname" placeholder="" [(ngModel)]="editData.Firstname" />
+                <span style="font-size: 90%;" class="text-danger small"
+                  *ngIf="employeeFormGroup.get('firstname') && employeeFormGroup.get('firstname')?.invalid && employeeFormGroup.get('firstname')?.touched ">This
+                  is not a valid input</span>
+                <!-- <span>check and show server side err if any with server err message</span> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm" formControlName="Lastname" id="lastname"
+                  name="lastname" placeholder="" [(ngModel)]="editData.Lastname" />
+                <span class="text-danger"
+                  *ngIf="employeeFormGroup.get('lastname') && employeeFormGroup.get('lastname')?.invalid && employeeFormGroup.get('lastname')?.touched ">This
+                  is not a valid input</span>
+                <!-- <span>check and show server side err if any with server err message</span> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Job Title</label>
+              <div class="col-sm-10">
+                <!-- <select id="jobtitle" [value]="editData.jobtitle" class="form-control form-control-sm"> -->
+                <select id="jobtitle" name="jobtitle" formControlName="JobTitle" class="form-control form-control-sm"
+                  [(ngModel)]="editData.JobTitle">
+                  <option value="0"></option>
+                  <option value="1">Account Adminstrator</option>
+                  <option value="2">Accountant2</option>
+                  <option value="3">Administrative Assistant</option>
+                  <option value="4">Book Keeper</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Registration</label>
+              <div class="col-sm-10">
+                <!-- <select id="registration"  [value]="editData.registration"  class="form-control form-control-sm" > -->
+                <select id="registration" name="registration" formControlName="Registration"
+                  class="form-control form-control-sm" [(ngModel)]="editData.Registration">
+                  <option value="0" selected></option>
+                  <option value="1">CME</option>
+                  <option value="2">CSP</option>
+                  <option value="3">EIT</option>
+                  <option value="4">ASLA</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnEditCloseModal" class="btn btn-outline-dark"
+                style="border: 1px solid #b0b0b0;width:100px" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+
+          </form>
+
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" style="border: 1px solid #b0b0b0;width:100px" data-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <!-- Add Modal -->
+  <div class="modal fade" id="empaddmodal" tabindex="-1" role="dialog" aria-labelledby="empeditmodalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:700px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="empeditmodalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Hello from Id: {{modalData}} -->
+
+          <!-- https://www.youtube.com/watch?v=Wr5urqswiko&list=PLQcBFrxTul9IQFF7fJz7jgdRYJz1OCbll&index=6 -->
+          <form [formGroup]="employeeFormGroup" (ngSubmit)="addEmp()">
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Emp Id</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm" formControlName="EmpID" id="empid" name="empid"
+                  placeholder="" [(ngModel)]="editData.EmpID" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm " formControlName="Firstname" id="firstname"
+                  name="firstname" placeholder="" [(ngModel)]="editData.Firstname" />
+                <span style="font-size: 90%;" class="text-danger small"
+                  *ngIf="employeeFormGroup.get('firstname') && employeeFormGroup.get('firstname')?.invalid && employeeFormGroup.get('firstname')?.touched ">This
+                  is not a valid input</span>
+                <!-- <span>check and show server side err if any with server err message</span> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm" formControlName="Lastname" id="lastname"
+                  name="lastname" placeholder="" [(ngModel)]="editData.Lastname" />
+                <span style="font-size: 90%;" class="text-danger small"
+                  *ngIf="employeeFormGroup.get('lastname') && employeeFormGroup.get('lastname')?.invalid && employeeFormGroup.get('lastname')?.touched ">This
+                  is not a valid input</span>
+                <!-- <span>check and show server side err if any with server err message</span> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Job Title</label>
+              <div class="col-sm-10">
+                <!-- <select id="jobtitle" [value]="editData.jobtitle" class="form-control form-control-sm"> -->
+                <select id="jobtitle" name="jobtitle" formControlName="JobTitle" class="form-control form-control-sm"
+                  [(ngModel)]="editData.JobTitle">
+                  <option value="0"></option>
+                  <option value="1">Account Adminstrator</option>
+                  <option value="2">Accountant2</option>
+                  <option value="3">Administrative Assistant</option>
+                  <option value="4">Book Keeper</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Registration</label>
+              <div class="col-sm-10">
+                <!-- <select id="registration"  [value]="editData.registration"  class="form-control form-control-sm" > -->
+                <select id="registration" name="registration" formControlName="Registration"
+                  class="form-control form-control-sm" [(ngModel)]="editData.Registration">
+                  <option value="0" selected></option>
+                  <option value="1">CME</option>
+                  <option value="2">CSP</option>
+                  <option value="3">EIT</option>
+                  <option value="4">ASLA</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnAddCloseModal" class="btn btn-outline-dark"
+                style="border: 1px solid #b0b0b0;width:100px" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+
+          </form>
+
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" style="border: 1px solid #b0b0b0;width:100px" data-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

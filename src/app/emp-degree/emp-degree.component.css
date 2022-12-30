@@ -1,0 +1,13 @@
+/* DATATABLE STYLES */
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table tbody th,
+table.dataTable tbody td {
+    padding: 5px 5px;
+    /* e.g. change 8x to 4px here */
+    vertical-align: middle;
+}
+
+/* ========================================== */

@@ -1,0 +1,292 @@
+
+<div>
+  <h2  style="margin-bottom: 5px;float: left;font-weight: bold;color: rgb(91, 91, 91);margin-top: 10px;">Employee Detail - {{firstname}}</h2>
+
+    <!-- <div id="empconfirmdelete" class="modal hide fade">
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+        <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+      </div>
+    </div> -->
+
+
+    <div id="empconfirmdelete" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="padding-bottom:5px;background-color:#f1f1f1;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="modal-title">Delete Confirmation</h3>
+          </div>
+          <!-- 2022 <div class="modal-body" style="padding:30px;">
+            Are you sure you want to delete the selected employee <span
+              style="font-size:16px;"><b>'{{this.emp.EmployeeID}}' </b></span>?<br>
+            All related data of the selected employee will also be deleted.
+          </div> -->
+          <div class="modal-footer">
+            <!-- 2022 <button @click="deleteemployee()" type="button" data-dismiss="modal" class="btn btn-danger" -->
+            <button  type="button" data-dismiss="modal" class="btn btn-danger"
+
+                id="delete">Delete</button>
+            <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <HEADER ROW WITH HEADING AND COMBO-->
+    <!-- ***************************************************** -->
+    <div class="row" style="margin:0px;padding:0px;">
+      <div class="col-sm-7" style="padding-left:0px;">
+        <!--2022 <h2 style=" margin-top: 10px; margin-bottom: 5px; font-size:25px;font-family: 'Helvetica', Arial, sans-serif;">
+          Employee Detail <span class="small" style="margin-left: 16px;"> {{emp.EmployeeID}}</span></h2> -->
+          <!--2022 <h2 style=" margin-top: 10px; margin-bottom: 5px; font-size:25px;font-family: 'Helvetica', Arial, sans-serif;">
+            Employee Detail <span class="small" style="margin-left: 16px;"> {{emp.EmployeeID}}</span></h2> -->
+
+      </div>
+      <!-- <empsearchbar/> -->
+      <!-- TEST BOOT SELECT -->
+      <!-- Bootstrap select https://www.youtube.com/watch?v=lg1d0QaQLe0 -->
+      <!-- https://www.webslesson.info/2017/05/bootstrap-multi-select-dropdown-with-checkboxes-using-jquery-in-php.html -->
+      <!-- <div class="col-sm-4" style="padding-right:0px;margin-top:0px;margin-left:70px;margin-bottom:9px;">
+            <div class="form-group" >
+              <div class="col-sm-5" style="height: 30px;padding-top: 3px;padding-left: 7px;margin-left: 178px;margin-bottom: 2px;">
+                  <select class="form-control" style="height:33px;width:233px;margin-right:5px;"
+                      id="selectemployeeid" 
+                      data-live-search="true" 
+                      data-style="btn btn-default btn-sm" 
+                      data-size="20"
+                      data-width="233px"
+                      data-none-selected-text="Find an Employee"
+                      data-container="body"
+                  >
+                      <option v-for="item in lstEmpID" :value="item.EmpID">{{ item.EmployeeID }}</option>
+                  </select>
+              </div>
+            </div>
+          </div> -->
+
+
+      <!-- LOADING IMAGE DIV  -->
+      <div *ngIf="loading2" class="loading-container" style="width: 100%;
+            background-color: transparent;
+            opacity:1;
+            position: absolute;
+            z-index: 3;
+            margin-left: 0%;
+            margin-right: 0%;
+            margin-top: 0%;
+            margin-bottom: 0%;
+            height: 84.5%;
+            left: 90px;
+            padding-top: 70px;">
+        <img class="imgloading" style="padding-left:72px;display: block; margin-left: auto;margin-right: auto;"
+          src="/assets/images/loading.gif" />
+      </div>
+      <!-- END LOADING IMAGE DIV  -->
+
+
+
+
+      <!-- TEST BOOT SELECT DROPDOWN-->
+      <!-- ***************************************************** -->
+      <!-- Bootstrap select https://www.youtube.com/watch?v=lg1d0QaQLe0 -->
+      <!-- https://www.webslesson.info/2017/05/bootstrap-multi-select-dropdown-with-checkboxes-using-jquery-in-php.html -->
+      <!-- For styling and avoiding button going out of container http://jsfiddle.net/MansukhKhandhar/4309n31p/1/ -->
+      <div class="input-group my-group pull-right" style="height:32px; width:250px;margin-top:10px;">
+        <!-- class form-control and style is added to select to avoid only showing button first on refresh -->
+        <!-- note: binding is not used since it needs array to check items -->
+        <!-- <select id="selectemployeeid" [(ngModel)]="findid" class="form-control" style="height:32px;width:205px;border-color: #aaa;" data-live-search="true"
+          data-size="20" title="Find employee ..."> -->
+          <!--2022 <option v-for="item in lstEmpID" :value="item.EmpID">{{ item.EmployeeID }}</option> -->
+          <!-- <option value="0" selected></option> -->
+          <!-- <option selected value="144">Saira</option>
+          <option value="145">Luna</option>
+          <option value="146">Tanu</option>
+          <option value="148">Wasim</option>
+        </select> -->
+
+        <select id="selectemployeeid" [(ngModel)]="findid" class="form-control" style="height:32px;width:205px;border-color: #aaa;" data-live-search="true"
+        data-size="20" title="Find employee ...">
+          <option *ngFor="let item of cmbEmp" [value]="item.empid">{{item.firstname}}</option>
+        </select>
+        
+        <span class="input-group-btn">
+          <!-- <button (click)="findbyemployeeid()" class="btn btn-default" style="height:32px;padding-top:4px;border-color: #aaa;">GO</button> -->
+          <a routerLink="/Empdetail/{{findid}}" (click)="findbyemployeeid()"  class="btn btn-default" style="height:32px;padding-top:4px;border-color: #aaa;">GO</a>
+        </span>
+
+      </div>
+
+    </div>
+    <!-- End Header row -->
+
+
+
+
+
+
+
+
+    <!-- DETAIL CONTAINER -->
+    <!-- ***************************************************** -->
+    <div id="details" style="margin-top:0px;">
+
+      <div class="row"
+        style="margin-top:0px;margin-left:0px;margin-right:0px;padding:15px;padding-left:10px;padding-bottom:14px;border:1px solid #afafaf; border-radius: 2px;">
+        <div class="col-sm-4" style="margin-right:0px;">
+          <dl class="dl-horizontal" style="margin-bottom:0px">
+            <!-- {{emp.empid}} giving error in console so converted to "empid" only for interpolation -->
+            <!-- <dt>Empid:</dt>
+            <dd>{{emp.empid}}</dd>
+            <dt>First Name:</dt>
+            <dd>{{emp.firstname}}</dd>
+            <dt>Last Name:</dt>
+            <dd>{{emp.lastname}}</dd> -->
+            <dt>Empid:</dt>
+            <dd>{{findid}}</dd>
+            <dt>First Name:</dt>
+            <dd>{{firstname}}</dd>
+            <dt>Last Name:</dt>
+            <dd>{{lastname}}</dd>
+          </dl>
+        </div>
+
+        <div class="col-sm-4" style="padding-right:0px;">
+          <dl class="dl-horizontal" style=" margin-top:0; margin-bottom:0px;">
+
+            <!-- <dt>Job Title:</dt>
+            <dd>{{emp.jobtitle}}</dd>
+            <dt>Registration:</dt>
+            <dd>{{emp.registration}}</dd>
+            <dt>Hiredate:</dt> -->
+            <!-- transform date using datepipe -->
+            <!-- <dd> {{datePipe.transform(emp.hiredate, "MM/dd/yyyy")}}</dd>
+            <dt>Consultant:</dt>
+            <dd><input id="ddEmployee_Consultant" disabled [(ngModel)]="emp.consultant" class="check-box" type="checkbox" /></dd> -->
+            <dt>Job Title:</dt>
+            <dd>{{jobtitle}}</dd>
+            <dt>Registration:</dt>
+            <dd>{{registration}}</dd>
+            <dt>Hiredate:</dt>
+            <!-- transform date using datepipe -->
+            <dd> {{datePipe.transform(hiredate, "MM/dd/yyyy")}}</dd>
+            <dt>Consultant:</dt>
+            <dd><input id="ddEmployee_Consultant" disabled [(ngModel)]="consultant" class="check-box" type="checkbox" /></dd>
+
+          
+          
+          </dl>
+
+        </div>
+        <div class="col-sm-1" style="padding-right:0px;padding-left:0px;">
+          <!-- {% if emp.ImageData %}
+                <img
+                  class="pull-right"
+                  src="{{emp.ImageData.url}}"
+                  style="width:150px;"
+                  alt
+                />
+                {% else %}
+                <img class="pull-right" src style="width:150px;" alt />
+                {% endif %}-->
+
+          <!-- <img v-if="emp.ImageData" class="pull-left" :src="this.$host+'img/empphoto/'+emp.ImageData" style="width:100px;border:1px solid #b6b6b6;" alt /> -->
+          <!-- 2022 <img v-if="emp.ImageDataWeb" class="pull-left" :src="this.$host+'img/empphoto/'+emp.ImageDataWeb"
+            style="width:100px;border:1px solid #b6b6b6;" alt /> -->
+            <!-- <img  class="pull-left" src="/assets/images/Richard-Burrell.jpg" style="width:100px;border:1px solid #b6b6b6;" alt /> -->
+            <!-- <img  class="pull-left" src="/assets/images/{{emp.firstname}}.jpg" style="width:100px;border:1px solid #b6b6b6;" alt /> -->
+            <img  class="pull-left" src="/assets/images/{{firstname}}.jpg" style="width:150px;border:1px solid #b6b6b6;" alt />
+
+
+
+          <!-- <img class="pull-left" :src="'/img/empphoto/'+emp1.ImageData" style="width:100px;border:1px solid #b6b6b6;" alt /> -->
+
+        </div>
+
+        <div class="col-sm-3 pull-right" style="margin-left:0px;padding-right:0px;position:relative">
+
+          <div style="width:100%;"> &nbsp;
+            <!-- 2022 <a @click="backtoemployee()" class="pull-right" style="font-size:14px;color:#006fae;cursor:pointer">Back to
+              List </a> -->
+              <a  routerLink="/AngularDatatable" class="pull-right" style="font-size:14px;color:#006fae;cursor:pointer">Back to  List </a>
+              
+                <!-- <a routerLink="/AngularDatatable" class="pull-right" style="font-size:14px;color:#006fae;cursor:pointer">Back to List</a> -->
+                 
+          </div>
+
+          <!--EDIT AND DELETE BUTTONS -->
+          <div style="width:100%;padding-top:190px;"> &nbsp;
+            <!-- <a @click="empconfirmdelete()" type="button" class="btn btn-default btn-sm pull-right" style="margin-left:6px;color:#006fae;"><span class="glyphicon glyphicon-remove " style="color:#c47676"></span> Delete Employee </a>   -->
+            <!-- 2022 <a @click="empconfirmdelete()" type="button" class="btn btn-danger btn-sm pull-right"
+              style="margin-left:6px;width:100px"> Delete</a> -->
+              <a  type="button" class="btn btn-danger btn-sm pull-right"
+              style="margin-left:6px;width:100px"> Delete</a>
+            <!-- <a @click.prevent="deleteemployee()" type="button" class="btn btn-default btn-sm pull-right" style="margin-left:6px;color:#006fae;"><span class="glyphicon glyphicon-remove " style="color:#c47676"></span> Delete Employee </a>   -->
+            <!-- <a @click="showempeditmodal()" type="button" class="btn btn-default btn-sm pull-right" style="color:#006fae;"><i class="fa fa-edit" style="font-size:14px;color:green;"></i> Edit Employee</a>   -->
+            <!-- 2022 <a @click="showempeditmodal()" type="button" style="width:100px" class="btn btn-primary btn-sm pull-right">
+              Edit</a> -->
+              <a  type="button" style="width:100px" class="btn btn-primary btn-sm pull-right">
+                Edit</a>
+            <!-- this hidden btn is clicked by a jquery trigger event to refresh employee -->
+            <!-- <button id="refreshemployee" @click="refreshempdetail()" hidden>Refresh Employee</button> -->
+          </div>
+
+        </div>
+
+      </div><!--  end detail row -->
+
+    </div><!--  end detail container-->
+
+
+
+
+    <!-- TAB CONTAINER -->
+    <!-- Note: First tab will be active and data will always change with employee change.
+    Data on rest of the tabs will only change on tab click -->
+    <!-- ***************************************************** -->
+    <div style="margin-top:20px; min-height: 300px !important;">
+      <ul id="navtabs" class="nav nav-tabs">
+        <!-- <li class="active">
+              <a id="empprojectlinktab" data-toggle="tab" href="#empprojecttab" style="border-color: #b2b2b2;padding-top:6px;padding-bottom: 6px;">Employee Projects</a>
+            </li> -->
+        <li class="active">
+          <a id="degreelinktab" data-toggle="tab" href="#degreetab"
+            style="border-color: #b2b2b2;border-bottom-color: #e2e2e2;padding-top:6px;padding-bottom: 6px;">Degree</a>
+        </li>
+        <li>
+          <a id="reglinktab" data-toggle="tab"  href="#regtab"
+            style="border-color: #a4a4a4;border-bottom-color: #e2e2e2;padding-top:6px;padding-bottom: 6px;">Registration</a>
+        </li>
+      </ul>
+    
+    
+      <!-- TAB CONTENT -->
+      <!-- ***************************************************** -->
+      <div class="tab-content"
+        style="border:1px solid #aeaeae; border: 1px solid #9b9b9b; border-top-color:#d7d7d7;padding:4px;padding-top:0px; min-height: 312px !important;">
+        <!-- <div id="empprojecttab" class="tab-pane fade in active "> -->
+        <!-- <empprojecttabcontent /> -->
+        <!-- </div> -->
+        <div id="degreetab" class="tab-pane fade in active" style="border-color:#f2f2f2">
+          <app-emp-degree [childempid]="id"></app-emp-degree>
+        </div>
+        <div id="regtab" class="tab-pane fade in ">
+          <app-emp-reg></app-emp-reg>
+        </div>
+        <!-- <empeditmodal ref="editmodalcomponent" v-bind:empid="empid" /> -->
+        <!-- <globalunauthorisedmsg /> -->
+      </div> <!-- end Full tab-content class div -->
+    </div><!-- end tab container -->
+
+
+    <!-- </div> end main container div -->
+
+    <!-- get empid from emp.id put it in hidden p to pass to jquery -->
+    <!-- <p id="hiddenempid" style="display: none">{{emp.id}}</p> -->
+
+
+  </div>

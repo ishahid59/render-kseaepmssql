@@ -1,0 +1,7 @@
+/* for invalid input control : https://www.youtube.com/watch?v=jdsSIKgJ6ZM&t=24s*/
+input.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+input{
+    border-color: #b7bfce;
+}

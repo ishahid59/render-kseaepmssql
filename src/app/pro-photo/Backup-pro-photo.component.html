@@ -1,0 +1,63 @@
+<div class="form-group row" style="margin-bottom: 0px;margin-top: 0px;padding-right:15px ">
+  <div class="col-sm-6" style="float: left;padding-right: 6px;">
+    <!-- Datatable -->
+    <!-- =================================================================================================== -->
+    <table id="dt" datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered table-striped"
+      style="border:1px solid #bbbbbb; width: 100%; ">
+      <thead class="" style="border:1px solid red">
+        <tr class="bg-primary">
+          <th scope="col" hidden>ProjectID</th>
+          <th scope="col" hidden>ID</th>
+          <th scope="col">PhotoName</th>
+          <th scope="col" hidden>ImageData</th>
+          <th scope="col" hidden>CreatedBy</th>
+          <th scope="col" hidden>LastModifiedBy</th>
+          <th scope="col">Description</th>
+          <!-- <th hidden="hidden">ID </th> -->
+          <th>Action</th>
+        </tr>
+      </thead>
+
+
+
+
+      <tbody style="border:10px solid #c4c4c4 !important">
+        <tr *ngFor="let item of proPhotoData;let indexOfelement=index">
+          <!-- <td>{{item.id}}</td> -->
+          <!-- <td>{{item.EmpID}}</td> -->
+          <td hidden>{{item.ProjectID}}</td>
+          <td hidden>{{item.ID}}</td>
+          <!-- <td>{{item.PhotoName}}</td> -->
+          <!-- <td><a (click)="test(item.ImageData)"
+            style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer;">{{item.PhotoName}}</a></td> -->
+          <td (click)="loadImageOnClick(item.ImageData, indexOfelement)"
+            style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer;">{{item.PhotoName}}</td>
+
+          <td hidden>{{item.ImageData}}</td>
+          <td hidden>{{item.CreatedBy}}</td>
+          <td hidden>{{item.LastModifiedBy}}</td>
+          <td>{{item.Description}}</td>
+          <td style="text-align: center;">
+            <!-- <a routerLink="/Empdetail/{{item.empid}}">View</a> |
+            <a (click)="showEmpEditModal(item)" id="test" data-toggle="modal" data-target="#empeditmodal" class=""
+              style="cursor: pointer;">Edit</a> |
+            <a (click)="deleteEmp(item)" id="test" class="" style="cursor: pointer;">Delete</a> -->
+
+            <a routerLink="">View</a> |
+            <a routerLink="">Edit</a> |
+            <a routerLink="">Delete</a>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-sm-6" style=" min-height:338px; padding:0px; float:right;margin-top:6px;margin-left:0px;margin-right:0px; background-color:#ddd">
+    <img [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)">
+    <!-- <div *ngFor="let image of _albums; let i=index">
+      <img [src]="image.thumb" (click)="open(i)" />
+    </div> -->
+  </div>
+
+</div>

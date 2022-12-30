@@ -1,0 +1,189 @@
+<!-- to use seperate child component for modal and call it from parent -->
+<!-- <button (click)="showEmpMainChildModal()" >Show child modal Test</button> -->
+<!-- <app-emp-edit-modal (refreshDatatable)="loadAngularDatatable()" [empid]="empid"></app-emp-edit-modal> -->
+
+<div>
+  <a (click)="showEmpAddModal()" type="button" class="btn btn-outline-dark pull-right btn-sm "
+    style="margin-left:4px;margin-bottom:8px;color:#006fae; border-color: #959595;" data-toggle="modal"
+    data-target="#empeditmodal"> <span aria-hidden="true" class="glyphicon glyphicon-plus" style="color:#006fae"></span>
+    Add new</a>
+  <a (click)="clearSearch()" style="margin-left:4px;border-color: #959595;color:#006fae;" type="button" id="reset"
+    class="btn btn-outline-dark pull-right btn-sm"><span aria-hidden="true" class="glyphicon glyphicon-refresh"
+      style="color:#006fae"></span> Reset</a>
+</div>
+
+<h2 style="margin-bottom: 5px;font-weight: bold;color: rgb(51, 51, 51);margin-top: 10px;">Angular-Datatable</h2>
+
+<div class="container" style="background-color: #f1f3f4;border:1px solid #337ab7; padding: 5px; margin: 0px;width:100%">
+  <br />
+
+  <!-- Datatable -->
+  <!-- =================================================================================================== -->
+  <table id="dt" datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered table-striped"
+    style="width: 100%; ">
+
+    <!-- thead is used twice because the header was not visible since datatable visibility turned off 
+    so that data does not repeat. We need it to export in excel. This affects thead visibility. So used twice to make visible  -->
+    <thead class="" style="border:1px solid red">
+      <tr class="bg-primary">
+        <!-- <th scope="col">empid</th> -->
+        <th scope="col">EmployeeID</th>
+        <th scope="col">JobTitle</th>
+        <th scope="col">Registration</th>
+        <th scope="col">HireDate</th>
+        <th scope="col" style="text-align: center;">Action</th>
+      </tr>
+    </thead>
+
+    <!-- for export to work and sorting data needs to be retrieved from datatable in .ts file so turn off html data retrieval -->
+    <tbody style="border:10px solid #c4c4c4 !important">
+      <tr *ngFor="let item of myData">
+        <!-- <td>{{item.empid}}</td> -->
+        <td><a routerLink="/Empdetail/{{item.EmpID}}"
+            style="text-decoration: underline;color:rgb(9, 85, 166);">{{item.EmployeeID}}</a></td>
+        <td>{{item.JobTitle}}</td>
+        <td>{{item.Registration}}</td>
+        <td>{{datePipe.transform(item.HireDate, "MM/dd/yyyy")}}</td>
+        <td style="text-align: center;">
+          <a routerLink="/Empdetail/{{item.empid}}">View</a> |
+          <a (click)="showEmpEditModal(item)" id="test" data-toggle="modal" data-target="#empeditmodal" class=""
+            style="cursor: pointer;">Edit</a> |
+          <a (click)="deleteEmp(item)" id="test" class="" style="cursor: pointer;">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- Edit Modal -->
+  <!-- ====================================================================================================== -->
+  <div class="modal fade" id="empeditmodal" tabindex="-1" role="dialog" aria-labelledby="empeditmodalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:700px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="empeditmodalLabel">Modal title</h5>
+          <button (click)="clearFormErrors()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- LOADING IMAGE DIV  -->
+        <div *ngIf="loading2" class="loading-container" style="width: 100%;
+                                    background-color: transparent;
+                                    opacity:1;
+                                    position: absolute;
+                                    z-index: 2;
+                                    margin-left: 0%;
+                                    margin-right: 0%;
+                                    margin-top: 0%;
+                                    margin-bottom: 0%;
+                                    height: 84.5%;
+                                    padding-top: 60px;">
+          <img class="imgloading" style="display: block; margin-left: auto;margin-right: auto;"
+            src="/assets/images/loading.gif" />
+        </div>
+        <!-- END LOADING IMAGE DIV  -->
+
+        <div class="modal-body">
+
+
+          <!-- All serverside validation on top and client side validation below input -->
+          <div *ngIf="formErrors[0].msg" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+            <!-- {{formErrors[0].msg}} -->
+            <div *ngFor="let item of formErrors">
+              <li style="font-size: 90%;list-style:none;padding-bottom:5px;" class="text-danger small">{{item.msg}}</li>
+            </div>
+          </div>
+
+          <!-- https://www.youtube.com/watch?v=Wr5urqswiko&list=PLQcBFrxTul9IQFF7fJz7jgdRYJz1OCbll&index=6 -->
+          <form [formGroup]="employeeFormGroup" (ngSubmit)="saveEmp()">
+            <div hidden class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Emp Id</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm" formControlName="empid" id="empid"
+                  name="empid" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm " formControlName="firstname" id="firstname"
+                  name="firstname" />
+                <!-- <span style="font-size: 90%;" class="text-danger small" *ngIf="employeeFormGroup.get('firstname') && employeeFormGroup.get('firstname')?.invalid && employeeFormGroup.get('firstname')?.touched ">Thisis not a valid input</span> -->
+                <!-- using getters for shortcut -->
+                <span style="font-size: 90%;" class="text-danger small"
+                  *ngIf="firstname && firstname?.invalid && firstname?.touched">Thisis not a valid input</span>
+                <!-- serverside validation now on top -->
+                <!-- <div *ngFor="let item of formErrors">
+                  <li style="font-size: 90%;list-style:none;padding-bottom:5px;" class="text-danger small"
+                    *ngIf="item.param == 'firstname'">{{item.test}}</li>
+                </div> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-sm" formControlName="lastname" id="lastname"
+                  name="lastname" />
+                <!-- <span class="text-danger" *ngIf="employeeFormGroup.get('lastname') && employeeFormGroup.get('lastname')?.invalid && employeeFormGroup.get('lastname')?.touched ">This  is not a valid input</span> -->
+                <span style="font-size: 90%;" class="text-danger small"
+                  *ngIf="lastname && lastname?.invalid && lastname?.touched">Thisis not a valid input</span>
+                <!-- <span>check and show server side err if any with server err message</span> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Job Title</label>
+              <div class="col-sm-10">
+                <select id="jobtitle" name="jobtitle" formControlName="jobtitle" class="form-control form-control-sm">
+                  <option *ngFor="let item of cmbJobtitle" [value]="item.listid">{{item.str1}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Registration</label>
+              <div class="col-sm-10">
+                <select id="registration" name="registration" formControlName="registration"
+                  class="form-control form-control-sm">
+                  <option *ngFor="let item of cmbRegistration" [value]="item.listid">{{item.str1}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Hire date</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control form-control-sm" formControlName="hiredate" id="hiredate"
+                  name="hiredate" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label">Consultant</label>
+              <div class="col-sm-10">
+                <div class="checkbox">
+                  <label><input type="checkbox" formControlName="consultant" id="consultant" name="consultant">
+                    consultant</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button (click)="clearFormErrors()" type="button" id="btnEditCloseModal" class="btn btn-outline-dark"
+                style="border: 1px solid #b0b0b0;width:100px" data-dismiss="modal">Close</button>
+              <button [disabled]="employeeFormGroup.invalid" type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" style="border: 1px solid #b0b0b0;width:100px" data-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-primary">Save changes</button>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

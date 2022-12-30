@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+/* search form group and input height */
+.form-group {
+    margin-bottom: 5px !important;
+}
+.form-control {
+    height: 30px !important;
+   border-color:  #bec5d0 !important;
+}
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px;
+    font-size: 13px !important;
+    line-height: 1.5;
+    border-radius: 3px;
+}

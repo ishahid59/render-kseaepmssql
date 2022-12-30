@@ -1,0 +1,54 @@
+/* DATATABLE STYLES */
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #686868;
+}
+
+.table tbody th,
+table.dataTable tbody td {
+    padding: 5px 15px;
+    /* e.g. change 8x to 4px here */
+    vertical-align: middle;
+    border: 1px solid #e4e4e4;
+}
+
+.table>tbody>tr>td {
+    padding: 6px !important;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+
+
+
+
+
+/* search form group and input height */
+.form-group {
+    margin-bottom: 8px !important;
+}
+.form-control {
+    height: 30px !important;
+   border-color:  #bec5d0 !important;
+}
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px;
+    font-size: 13px !important;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+input[type=file] {
+    display: inline;
+}
+/* styling file input button */
+input[type=file]::-webkit-file-upload-button {
+    /* visibility: hidden; */
+    width: 90px;
+    font-size: 13px;
+    margin-left: 5px;
+
+}
+label{
+    color: #656565 !important;
+}

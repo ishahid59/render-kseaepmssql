@@ -1,0 +1,363 @@
+<div  class="wrapper" style="background-color: #858585;">
+
+  <!-- Main Header -->
+  <header *ngIf="authService.isLoggedIn$ | async" class="main-header">
+
+    <!-- original Logo -->
+    <!-- <a href="index2.html" class="logo"> -->
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <!-- <span class="logo-mini">
+        <b>A</b>LT
+      </span> -->
+      <!-- logo for regular state and mobile devices -->
+      <!-- <span class="logo-lg">
+        <b>Admin</b>LTE
+      </span>
+    </a> -->
+
+    <!-- new Logo -->
+    <a href="/Home" class="logo" style="text-align:left;">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <!-- <span class="logo-mini"><b><i>KSE</i></b></span> -->
+      <span class="logo-mini"><b><i>KSEP</i></b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg" style="font-size:20px;margin-left:10px;"><b><i>KSE</i></b> projects</span>
+    </a>
+
+
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li>
+            <!-- Menu toggle button -->
+            <!-- 2022 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-fw fa-user-o"></i>
+              <span> {{username}}</span>
+            </a> -->
+          </li>
+          <li>
+            <!-- Menu toggle button -->
+           <a  (click)="logout()" href="/" class="dropdown-toggle" data-toggle="dropdown" style="margin-right: 6px;">
+              <i class="fa fa-fw fa-power-off"></i>
+              <span> Logout</span>
+            </a>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+
+
+
+
+
+  
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside *ngIf="authService.isLoggedIn$ | async" class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree" style="margin-top:70px;" >
+        <!-- <li style="margin-top:30px; margin-bottom:30px" class="header">LEFT MENU BAR</li> -->
+        <!-- <li class="header" style="font-weight: bold; color: rgb(184, 199, 206); font-size: 12px; margin-top: 10px; margin-bottom: 40px;"></li> -->
+        <!-- Optionally, you can add icons to the links -->
+       <li>
+        <a routerLink="Home">
+            <i class="fa fa-fw fa-file " style="margin-right:8px"></i>
+            <span>Home</span>
+        </a>
+        </li>
+        <!-- <li> <a routerLink="#"><i class="fa fa-fw fa-file " style="margin-right:5px"></i>Home</a></li> -->
+        <li>
+          <a routerLink="#">
+            <i class="fa fa-fw fa-file " style="margin-right:5px"></i>
+            <span>
+              Contact
+            </span>
+          </a>
+        </li>
+        <!-- <li> <a routerLink="#"><i class="fa fa-fw fa-file " style="margin-right:5px"></i>Contact</a></li> -->
+        <li>
+          <a routerLink="AngularDatatable">
+            <i class="fa fa-fw fa-file " style="margin-right:8px"></i>
+            <span>AngularDatatable</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="EmployeeSearch">
+            <i class="fa fa-fw fa-file " style="margin-right:5px"></i>
+            <span>
+              Employee Search
+            </span>
+          </a>
+        </li>
+        <!-- <li> <a routerLink="AngularDatatable"><i class="fa fa-fw fa-file " style="margin-right:5px"></i>AngularDatatable</a></li> -->
+         <li>
+          <a routerLink="JqueryDatatable">
+            <i class="fa fa-fw fa-file " style="margin-right:5px"></i>
+            <span>
+              JqueryDatatable
+            </span>
+          </a>
+        </li>
+        <!-- <li> <a routerLink="JqueryDatatable"><i class="fa fa-fw fa-file " style="margin-right:5px"></i>JqueryDatatable</a></li> -->
+         <li>
+          <a routerLink="AngularDatatable">
+            <i class="fa fa-fw fa-file " style="margin-right:5px"></i>
+            <span>
+              AngularDatatable
+            </span>
+          </a>
+        </li>
+        <!-- <li> <a routerLink="AngularDatatable"><i class="fa fa-fw fa-file " style="margin-right:5px"></i>AngularDatatable</a></li> -->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-folder" style="margin-right:8px"></i>
+            <span>List Items</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <!-- <a href="#">Employee Jobitle</a> -->
+              <a routerLink="AngularDatatable">AngularDatatable</a>
+            </li>
+            <li>
+              <!-- <a href="#">Employee Registration</a> -->
+              <a routerLink="JqueryDatatable">JqueryDatatable</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- if else condition(with TEMPLATE) is used with wrapper to hide adminle sidebar when loged in -->
+  <!-- Content Wrapper. Contains page content -->
+  <div *ngIf="authService.isLoggedIn$ | async ; else templateName"   class="content-wrapper" style="background-color:f1f3f4;">
+  <!-- <div class="content-wrapper"  style="background-color:#f1f3f4; " [ngClass]="{'first': authService.isLoggedIn$ | async }"> -->
+    <!-- Content Header (Page header) -->
+    <!-- <section class="content-header">
+      <h1>
+        Page Header
+        <small>Optional description</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="#">
+            <i class="fa fa-dashboard"></i> Level
+          </a>
+        </li>
+        <li class="active">Here</li>
+      </ol>
+    </section> -->
+
+    <!-- Main content -->
+    <section class="content container-fluid" style="background-color:#f1f3f4; padding-left:25px; padding-top:15px;padding-bottom: 10px;" >
+      <!-- <section class="content container-fluid" style="background-color:#f1f3f4; padding:0px;" > -->
+
+      <!--------------------------
+      | Your Page Content Here |
+      -------------------------->
+    
+      <!-- <router-view  :key="$route.fullPath"/> before 2022-->
+      <router-outlet></router-outlet>
+   
+    </section> <!-- /.content -->
+   
+  </div><!-- /.content-wrapper -->
+  
+
+
+
+  
+
+  <!-- **using TEMPLATE(with else condition) for login form to hide adminlte sidebar if not loged in -->
+  <ng-template #templateName>
+      <div  class="content-wrapper"  style="background-color:#858585; margin-left:0px;">
+  <!-- <div class="content-wrapper"  style="background-color:#f1f3f4; " [ngClass]="{'first': authService.isLoggedIn$ | async }"> -->
+    <!-- Content Header (Page header) -->
+    <!-- <section class="content-header">
+      <h1>
+        Page Header
+        <small>Optional description</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li>
+          <a href="#">
+            <i class="fa fa-dashboard"></i> Level
+          </a>
+        </li>
+        <li class="active">Here</li>
+      </ol>
+    </section> -->
+
+    <!-- Main content -->
+    <section class="content container-fluid" style="background-color:#858585; padding:0px;" >
+      <!-- <section class="content container-fluid" style="background-color:#f1f3f4; padding:0px;" > -->
+
+      <!--------------------------
+      | Your Page Content Here |
+      -------------------------->
+
+      <!-- <router-view  :key="$route.fullPath"/> before 2022-->
+      <router-outlet></router-outlet>
+    </section><!-- /.content -->
+  </div> <!-- /.content-wrapper -->
+ 
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- original Main Footer -->
+  <!-- <footer class="main-footer" style="background-color:white"> -->
+    <!-- To the right -->
+    <!-- <div class="pull-right hidden-xs">Anything you want</div> -->
+    <!-- Default to the left -->
+    <!-- <strong>
+      Copyright &copy; 2020
+      <a href="#" style="color:#3097D1">Farhan Shahid</a>.
+    </strong> All rights reserved. -->
+  <!-- </footer> -->
+
+
+  <!-- Main Footer -->
+  <footer *ngIf="authService.isLoggedIn$ | async" class="main-footer" style="background-color:white">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      <!-- Anything you want on the right side-->
+    </div>
+    <!-- Default to the left -->
+    <small>Copyright &copy; 2020 <a style="color:#3097D1" href="http://compulinkbd.com">Compulink International Ltd.</a> All rights reserved.</small> 
+  </footer>  
+
+  <!-- Control Sidebar -->
+  <aside *ngIf="authService.isLoggedIn$ | async" class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li class="active">
+        <a href="#control-sidebar-home-tab" data-toggle="tab">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#control-sidebar-settings-tab" data-toggle="tab">
+          <i class="fa fa-gears"></i>
+        </a>
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane active" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:;">
+              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                <p>Will be 23 on April 24th</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:;">
+              <h4 class="control-sidebar-subheading">
+                Custom Template Design
+                <span class="pull-right-container">
+                  <span class="label label-danger pull-right">70%</span>
+                </span>
+              </h4>
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h3 class="control-sidebar-heading">General Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Report panel usage
+              <input type="checkbox" class="pull-right" checked />
+            </label>
+
+            <p>Some information about this general settings option</p>
+          </div>
+          <!-- /.form-group -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar-->
+  <div class="control-sidebar-bg"></div>
+</div>
+
+
+
+
+<!-- <app-login *ngIf="authService.isLoggedIn$ | async"></app-login> -->
+<!-- <app-login *ngIf="authService.logedOut"></app-login> -->
+<!-- <app-navigation *ngIf="authService.isLoggedIn$ | async"></app-navigation> -->
+
+<!-- <div class="container" style="background-color: #f1f3f4;padding-left: 25px;padding-right: 25px;padding-bottom: 50px;"> -->
+  <!-- <router-outlet  ></router-outlet> -->
+<!-- </div> -->

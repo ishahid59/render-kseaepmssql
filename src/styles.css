@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* datatable with data coming from within jquery will haave to set from here */
+/* #dt.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+} */
+#dt.table>thead {
+    border: 0px solid red !important;
+}
+
+/* #dt.table>tbody>tr>td {
+    padding: 6px !important;
+    line-height: 1.12857143;
+    vertical-align: top;
+    border-bottom: 1px solid #bbbbbb;
+    border-right: 1px solid #b1b1b1;
+} */
+
+
+/* common for all datatable where data is within by jquery code */
+#dt.table>tbody>tr>td,
+#jquerydatatable.table>tbody>tr>td
+ {
+    padding: 6px !important;
+    line-height: 1.12857143;
+    vertical-align: top;
+    border-bottom: 1px solid #bbbbbb;
+    border-right: 1px solid #b1b1b1;
+}
+
+
+
+.dataTables_info {
+    float: left !important;
+}
+
+#dt.table {
+    /* border-bottom: 0px solid #e4e4e4; */
+    border:1px solid #bbbbbb;
+    border-bottom:0;
+    border-top:0;
+}

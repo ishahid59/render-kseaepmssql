@@ -1,0 +1,71 @@
+<!-- <div style="background-color: #858585;width: 100%;height: 100vh;padding-top: 200px;"> -->
+  <div style="background-color: #858585;width: 100%;margin-top: 120px;">
+
+                  <!-- LOADING IMAGE DIV  -->
+                  <div *ngIf="loading2" class="loading-container" style="width: 100%;
+                                    background-color: transparent;
+                                    opacity:1;
+                                    position: absolute;
+                                    z-index: 2;
+                                    margin-left: 0%;
+                                    margin-right: 0%;
+                                    margin-top: 0%;
+                                    margin-bottom: 0%;
+                                    height: 84.5%;
+                                    padding-top: 40px;">
+                    <img class="imgloading" style="display: block; margin-left: auto;margin-right: auto;" src="/assets/images/loading.gif" />
+                  </div>
+                  <!-- END LOADING IMAGE DIV  -->
+  <div class="container"
+    style="background-color: #f1f3f4;width: 400px;margin-top:0px; border: 1px solid grey; padding: 20px;padding-top: 0px;">
+    
+    
+    <h2 style="font-weight: bold;">Login</h2>
+
+    <!-- All serverside validation on top and client side validation below input -->
+    <div *ngIf="formErrors[0].msg" class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+      {{formErrors[0].msg}}
+    </div>
+
+
+
+
+    <!-- <form id="loginform" (ngSubmit)="submitForm()" [formGroup]="form"> -->
+      <form id="loginform" (ngSubmit)="submitForm()" [formGroup]="form" >
+      <div class="form-group" style="margin-bottom: 0px;">
+        <label for="Username" style="font-size: small;font-weight: normal;margin-bottom: 2px;">Email</label>
+        <!-- <input  style="height:30px" [(ngModel)]="email" formControlName="email" class="form-control" type="text" name="email" id="email" /> -->
+        <input style="height:30px" formControlName="email" class="form-control" type="text" name="email" id="email" />
+        <span style="font-size: 90%;" class="text-danger small" *ngIf="email && email?.invalid && email?.touched">Valid email
+          is required</span><br>
+         
+        <!-- serverside validation  -->
+        <!-- <div *ngFor="let item of formErrors">
+          <li style="font-size: 90%;list-style:none;padding-bottom:5px;" class="text-danger small"
+            >{{item.msg}}</li>
+        </div> -->
+      </div>
+
+
+
+      <div class="form-group">
+        <label style="font-size: small;font-weight: normal;margin-bottom: 2px;" for="Password">Password</label>
+        <!-- <input style="height:30px" [(ngModel)]="password" formControlName="password" class="form-control" type="text" name="password" id="password" /> -->
+        <input style="height:30px" formControlName="password" class="form-control" type="text" name="password"
+          id="password" />
+        <span style="font-size: 90%;" class="text-danger small"
+          *ngIf="password && password?.invalid && password?.touched">Password is required</span>
+       <!-- serverside validation  -->
+        <!-- <div *ngFor="let item of formErrors">
+          <li style="font-size: 90%;list-style:none;padding-bottom:5px;" class="text-danger small"
+            >{{formErrors[0].msg}}</li>
+        </div> -->
+          
+      </div>
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary pull-right" style="width: 100px;">Submit</button>
+    </form>
+  </div>
+  <!-- <button (click)="test()">reset</button> -->
+</div>
