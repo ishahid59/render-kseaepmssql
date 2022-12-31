@@ -48,36 +48,53 @@
     </table>
   </div>
 
-  <div class="col-sm-6" style="background-image: url({{dynamicimagepath}}); 
-  min-height:338px;
-  min-height:368px;
+  <!-- <div class="col-sm-6" style="background-image: url({{dynamicimagepath}}); 
+  background-repeat: no-repeat;
+  min-height:auto;
+
   background-size: 100%; 
-  height:auto;
+
   padding:0px; 
   float:right;
   margin-top:6px;
   margin-left:0px;
   margin-right:0px; 
-  background-color:#ddd">
+  background-color:#ddd"> -->
    
-   
+  <div class="col-sm-6" 
+  
+
+  style="background-image: url({{dynamicimagepath}}); 
+  background-repeat: no-repeat;
+
+
+  background-size: 100%; 
+
+
+  padding:0px; 
+  float:right;
+  margin-top:6px;
+  margin-left:0px;
+  margin-right:0px; 
+  background-color:#ddd"
+  >
    
         <!-- LOADING IMAGE DIV  -->
-        <div *ngIf="loading" class="loading-container" style="width: 100%;min-height:366px;height:100%;
+        <!-- <div *ngIf="loading" class="loading-container" style="width: 100%;min-height:366px;height:100%;
                  background-color: #ddd;
                  opacity:.9;
                  position: absolute;
-                 z-index: 3;
+                 z-index: 103;
                  padding-left: 0px;padding-top: 60px;
                  ">
           <img class="imgloading" 
             style="display: block;max-height: 338px; margin-left: auto;margin-right: auto;max-height: 366px !important;"
             src="/assets/images/loading.gif" />
-        </div>
+        </div> -->
    <!-- END LOADING IMAGE DIV  -->
 
 
-   <!-- <img [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)"> -->
+   <img  [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;visibility: hidden;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)">
 
     <!-- <div *ngFor="let image of _albums; let i=index">
       <img [src]="image.thumb" (click)="open(i)" />

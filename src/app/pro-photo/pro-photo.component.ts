@@ -120,10 +120,7 @@ export class ProPhotoComponent {
   }
 
 
-  onChange(){
-    alert()
-    this.loading=false;
-  }
+
 
 
 
@@ -245,6 +242,7 @@ export class ProPhotoComponent {
 
           // ngx-lightbox https://www.npmjs.com/package/ngx-lightbox
           this._albums=[];
+          var imagepath=[]
           for (let i = 0; i <= this.proPhotoData.length - 1; i++) {
             const src = this.commonService.baseUrl + '/img/prophoto/' + this.proPhotoData[i].ImageData;
             // const caption = 'Image ' + i + ' caption here';
@@ -256,8 +254,17 @@ export class ProPhotoComponent {
               thumb: thumb
             };
             this._albums.push(album);
+            imagepath.push(this.commonService.baseUrl + '/img/prophoto/' + this.proPhotoData[i].ImageData.src)
           }
 console.log(this._albums);
+console.log(imagepath);
+
+     // PRELOAD IMAGES 
+     // https://stackoverflow.com/questions/476679/preloading-images-with-jquery  
+      // $(that._albums).each(function () {
+      //   $('<img />').attr('src', this).appendTo('body').css('display', 'none');
+      // });
+
 
 
 
