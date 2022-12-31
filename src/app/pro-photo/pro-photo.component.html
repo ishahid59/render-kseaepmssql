@@ -48,7 +48,17 @@
     </table>
   </div>
 
-  <div class="col-sm-6" style=" min-height:338px; padding:0px; float:right;margin-top:6px;margin-left:0px;margin-right:0px; background-color:#ddd">
+  <div class="col-sm-6" style="background-image: url({{dynamicimagepath}}); 
+  min-height:338px;
+  min-height:368px;
+  background-size: 100%; 
+  height:auto;
+  padding:0px; 
+  float:right;
+  margin-top:6px;
+  margin-left:0px;
+  margin-right:0px; 
+  background-color:#ddd">
    
    
    
@@ -58,19 +68,16 @@
                  opacity:.9;
                  position: absolute;
                  z-index: 3;
-                 padding-top:75px;">
-          <img class="imgloading"
+                 padding-left: 0px;padding-top: 60px;
+                 ">
+          <img class="imgloading" 
             style="display: block;max-height: 338px; margin-left: auto;margin-right: auto;max-height: 366px !important;"
             src="/assets/images/loading.gif" />
         </div>
    <!-- END LOADING IMAGE DIV  -->
-   
-   
-   
-   
-   
-   
-    <img [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)">
+
+
+   <!-- <img [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)"> -->
 
     <!-- <div *ngFor="let image of _albums; let i=index">
       <img [src]="image.thumb" (click)="open(i)" />

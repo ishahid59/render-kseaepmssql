@@ -137,6 +137,10 @@ export class EmployeeService {
     return this.http.get<any>(url);
   }
 
-
+getSingleProPhoto(item:any){
+  var url = this.commonService.baseUrl + '/img/prophoto/' + item;
+  // return this.http.get<any>(url);
+  return url;
+}
 
 }

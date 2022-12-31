@@ -7,6 +7,9 @@ import { CommonService } from '../services/common.service';
 import { EmployeeService } from '../services/employee.service';
 import { DatePipe } from '@angular/common';// datepipe used to convert date format to show in html date element
 import { Lightbox } from 'ngx-lightbox';
+import { saveAs} from 'file-saver';
+
+
 
 @Component({
   selector: 'app-pro-photo',
@@ -89,15 +92,45 @@ export class ProPhotoComponent {
   // }
 
 
+  // //for gallery https://www.youtube.com/watch?v=WVkbpfux13E&list=PL5RuyRApxAq4yFHaf8nz2rLBSN3_Ihott&index=54&t=34s
+  // loadImageOnClick(item: any, index: any) {
+  //    this.loading=true;
+  //   // this.dynamicimagepath = this.$host + "img/prophoto/" + this.formdata.ImageData
+  //   this.dynamicimagepath = '' + this.commonService.baseUrl + '/img/prophoto/' + item;
+  //   // this.open(index-1);
+  //   this.clickedIndexOfDt = index;//-1; // save the clicked index to use by right photo to open current image in gallery
+  //  }
+
   //for gallery https://www.youtube.com/watch?v=WVkbpfux13E&list=PL5RuyRApxAq4yFHaf8nz2rLBSN3_Ihott&index=54&t=34s
   loadImageOnClick(item: any, index: any) {
-    this.loading=true;
-    // this.dynamicimagepath = this.$host + "img/prophoto/" + this.formdata.ImageData
-    this.dynamicimagepath = '' + this.commonService.baseUrl + '/img/prophoto/' + item;
-    // this.open(index-1);
-    this.clickedIndexOfDt = index;//-1; // save the clicked index to use by right photo to open current image in gallery
+    // this.empservice.getSingleProPhoto(item).subscribe(resp => {
+    //   this.dynamicimagepath = resp;
+    //   console.log(resp);
+    //   this.clickedIndexOfDt = index;
+    //   this.loading=false;
+    // },
+    // err => {
+    //     alert(err.message);
+    // });
+
+    this.dynamicimagepath=this.empservice.getSingleProPhoto(item);
+    this.clickedIndexOfDt = index;
+    this.loading=false;
+
+  }
+
+
+  onChange(){
+    alert()
     this.loading=false;
   }
+
+
+
+
+
+
+
 
   // *****************************************************************************************************************************
   // END IMAGE RELATED 
@@ -122,7 +155,6 @@ export class ProPhotoComponent {
     //   this.refreshDatatableProPhoto();// refresh instance of angular-datatable
     // })
     // this.fillimagegallerylist(242)
-
    
   }
 
@@ -151,6 +183,8 @@ export class ProPhotoComponent {
       this.childempid = param.get('id')
       this.refreshDatatableProPhoto();// refresh instance of angular-datatable
     })
+
+
   }
 
 
@@ -223,6 +257,9 @@ export class ProPhotoComponent {
             };
             this._albums.push(album);
           }
+console.log(this._albums);
+
+
 
           // ******************************************************************************************
           // End

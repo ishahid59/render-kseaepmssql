@@ -2,29 +2,24 @@
   <div class="col-sm-6" style="float: left;padding-right: 6px;">
     <!-- Datatable -->
     <!-- =================================================================================================== -->
-    <table id="dt" datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered table-striped"
-      style="border:1px solid #bbbbbb; width: 100%; ">
+    <table  id="dt" datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered table-striped"
+      style="border:1px solid #bbbbbb;width:100%;" >
       <thead class="" style="border:1px solid red">
         <tr class="bg-primary">
           <th scope="col" hidden>ProjectID</th>
           <th scope="col" hidden>ID</th>
-          <th scope="col">PhotoName</th>
+          <th scope="col" >PhotoName</th>
           <th scope="col" hidden>ImageData</th>
           <th scope="col" hidden>CreatedBy</th>
           <th scope="col" hidden>LastModifiedBy</th>
           <th scope="col">Description</th>
           <!-- <th hidden="hidden">ID </th> -->
-          <th>Action</th>
+          <th >Action</th>
         </tr>
       </thead>
 
-
-
-
       <tbody style="border:10px solid #c4c4c4 !important">
         <tr *ngFor="let item of proPhotoData;let indexOfelement=index">
-          <!-- <td>{{item.id}}</td> -->
-          <!-- <td>{{item.EmpID}}</td> -->
           <td hidden>{{item.ProjectID}}</td>
           <td hidden>{{item.ID}}</td>
           <!-- <td>{{item.PhotoName}}</td> -->
@@ -54,10 +49,29 @@
   </div>
 
   <div class="col-sm-6" style=" min-height:338px; padding:0px; float:right;margin-top:6px;margin-left:0px;margin-right:0px; background-color:#ddd">
-    <img [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)">
+   
+   
+   
+        <!-- LOADING IMAGE DIV  -->
+        <div *ngIf="loading" class="loading-container" style="width: 100%;min-height:366px;height:100%;
+                 background-color: #ddd;
+                 opacity:.9;
+                 position: absolute;
+                 z-index: 3;
+                 padding-left: 0px;padding-top: 60px;">
+          <img class="imgloading" 
+            style="display: block;max-height: 338px; margin-left: auto;margin-right: auto;max-height: 366px !important;"
+            src="/assets/images/loading.gif" />
+        </div>
+   <!-- END LOADING IMAGE DIV  -->
+
+
+   <img [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)">
+
     <!-- <div *ngFor="let image of _albums; let i=index">
       <img [src]="image.thumb" (click)="open(i)" />
     </div> -->
+
   </div>
 
 </div>
