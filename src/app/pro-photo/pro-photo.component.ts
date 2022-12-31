@@ -46,7 +46,8 @@ export class ProPhotoComponent {
 
   _albums: any = [];
   clickedIndexOfDt: any = 0; // index value saved from loadImageOnClick() to open Lightbox when big photo is clicked
-
+  imagePathArray: any = []; // used for preload images
+  loaded2: any = 0;
 
 
 
@@ -92,40 +93,14 @@ export class ProPhotoComponent {
   // }
 
 
-  // //for gallery https://www.youtube.com/watch?v=WVkbpfux13E&list=PL5RuyRApxAq4yFHaf8nz2rLBSN3_Ihott&index=54&t=34s
-  // loadImageOnClick(item: any, index: any) {
-  //    this.loading=true;
-  //   // this.dynamicimagepath = this.$host + "img/prophoto/" + this.formdata.ImageData
-  //   this.dynamicimagepath = '' + this.commonService.baseUrl + '/img/prophoto/' + item;
-  //   // this.open(index-1);
-  //   this.clickedIndexOfDt = index;//-1; // save the clicked index to use by right photo to open current image in gallery
-  //  }
-
   //for gallery https://www.youtube.com/watch?v=WVkbpfux13E&list=PL5RuyRApxAq4yFHaf8nz2rLBSN3_Ihott&index=54&t=34s
   loadImageOnClick(item: any, index: any) {
-    // this.empservice.getSingleProPhoto(item).subscribe(resp => {
-    //   this.dynamicimagepath = resp;
-    //   console.log(resp);
-    //   this.clickedIndexOfDt = index;
-    //   this.loading=false;
-    // },
-    // err => {
-    //     alert(err.message);
-    // });
-
-    this.dynamicimagepath=this.empservice.getSingleProPhoto(item);
-    this.clickedIndexOfDt = index;
-    this.loading=false;
-
-  }
-
-
-
-
-
-
-
-
+     this.loading=true;
+    // this.dynamicimagepath = this.$host + "img/prophoto/" + this.formdata.ImageData
+    this.dynamicimagepath = this.commonService.baseUrl + '/img/prophoto/' + item;
+    // this.open(index-1);
+    this.clickedIndexOfDt = index;//-1; // save the clicked index to use by right photo to open current image in gallery
+   }
 
 
 
@@ -242,7 +217,8 @@ export class ProPhotoComponent {
 
           // ngx-lightbox https://www.npmjs.com/package/ngx-lightbox
           this._albums=[];
-          var imagepath=[]
+          this.imagePathArray=[]; // to preload images
+
           for (let i = 0; i <= this.proPhotoData.length - 1; i++) {
             const src = this.commonService.baseUrl + '/img/prophoto/' + this.proPhotoData[i].ImageData;
             // const caption = 'Image ' + i + ' caption here';
@@ -253,17 +229,21 @@ export class ProPhotoComponent {
               caption: caption,
               thumb: thumb
             };
+            // for album
             this._albums.push(album);
-            imagepath.push(this.commonService.baseUrl + '/img/prophoto/' + this.proPhotoData[i].ImageData.src)
+            // make imagepath array to preload images
+            this.imagePathArray.push(this.commonService.baseUrl + '/img/prophoto/' + this.proPhotoData[i].ImageData.src)
           }
-console.log(this._albums);
-console.log(imagepath);
+
+          console.log(this._albums);
+          console.log(this.imagePathArray);// to preload images
+
 
      // PRELOAD IMAGES 
-     // https://stackoverflow.com/questions/476679/preloading-images-with-jquery  
-      // $(that._albums).each(function () {
-      //   $('<img />').attr('src', this).appendTo('body').css('display', 'none');
-      // });
+     // javascript: https://stackoverflow.com/questions/476679/preloading-images-with-jquery  
+      $(that.imagePathArray).each(function () {
+        $('<img />').attr('src', this).appendTo('body').css('display', 'none');
+      });
 
 
 
