@@ -10,5 +10,11 @@ table.dataTable tbody td {
     vertical-align: middle;
 }
 
+#overlay img { display: none; }
 
+#overlay.currently-loading img { 
+    display: block; 
+    width: 100%;
+    height: 100%;
+}
 /* ========================================== */

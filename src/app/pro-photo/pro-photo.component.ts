@@ -232,7 +232,8 @@ export class ProPhotoComponent {
             // for album
             this._albums.push(album);
             // make imagepath array to preload images
-            this.imagePathArray.push(this.commonService.baseUrl + '/img/prophoto/' + this.proPhotoData[i].ImageData.src)
+            //<!-- https://stackoverflow.com/questions/64197601/how-to-load-images-before-showing-an-angular-website -->
+            this.imagePathArray.push(this.commonService.baseUrl + '/img/prophoto/' + this.proPhotoData[i].ImageData)
           }
 
           console.log(this._albums);
@@ -241,9 +242,9 @@ export class ProPhotoComponent {
 
      // PRELOAD IMAGES 
      // javascript: https://stackoverflow.com/questions/476679/preloading-images-with-jquery  
-      $(that.imagePathArray).each(function () {
-        $('<img />').attr('src', this).appendTo('body').css('display', 'none');
-      });
+      // $(that.imagePathArray).each(function () {
+      //   $('<img />').attr('src', this).appendTo('body').css('display', 'none');
+      // });
 
 
 
