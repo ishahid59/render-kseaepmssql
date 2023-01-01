@@ -53,6 +53,7 @@ export class EmpDegreeComponent {
 
   }
 
+  
 
   /* to remove "no matching records found" even if angular-datatable is not empty */
   // https://github.com/l-lin/angular-datatables/issues/1260
@@ -78,7 +79,7 @@ export class EmpDegreeComponent {
   }
 
 
-  // Refresh/reload Angular-Datatable. Following method must be used to reload angular-datatable since ngOnInit() is used to initilize table 
+  // RELOAD/REFRESH Angular-Datatable. Following method must be used to reload angular-datatable since ngOnInit() is used to initilize table 
   // https://l-lin.github.io/angular-datatables/#/advanced/custom-range-search
   refreshDatatableEmpDegree() {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
