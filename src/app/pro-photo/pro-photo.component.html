@@ -50,7 +50,22 @@
 
   <div class="col-sm-6" style=" min-height:338px; padding:0px; float:right;margin-top:6px;margin-left:0px;margin-right:0px; background-color:#ddd">
    
-   
+
+  <!-- We can also use div BACKGROUND-IMAGE to show photo but right click image sace as wont show -->
+  <!-- <div  (click)="openLightbox(clickedIndexOfDt)" class="col-sm-6" style="background-image: url({{dynamicimagepath}}); 
+  cursor: pointer;
+  z-index: 200;
+  background-repeat: no-repeat;
+  background-size: 100%; 
+  padding:0px; 
+  float:right;
+  margin-top:6px;
+  margin-left:0px;
+  margin-right:0px; 
+  background-color:#ddd"> -->
+
+
+
    
         <!-- LOADING IMAGE DIV  -->
         <!-- <div *ngIf="loading" class="loading-container" style="width: 100%;min-height:366px;height:100%;
@@ -66,6 +81,12 @@
    <!-- END LOADING IMAGE DIV  -->
 
 
+
+
+
+
+
+    <!-- We can also use div background image to show photo but right click image sace as wont show -->
    <img [src]="dynamicimagepath" style="height: 100%; width: 100%; cursor: pointer;" alt=" No Photo found"  (click)="openLightbox(clickedIndexOfDt)">
 
 
