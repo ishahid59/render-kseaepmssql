@@ -40,7 +40,7 @@ ImageDataWeb:any="";
 
 
 dynamicimagepath:any='';
-
+activeTabClass:string="";
 
   id: any = null;
   loading2:boolean=false;
@@ -61,7 +61,6 @@ dynamicimagepath:any='';
  // CALL CHILD METHOD
  @ViewChild(EmpEditModalComponent)
  private empmainmodalcomponent!: EmpEditModalComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
-
 
 
   //to use seperate child component for modal and call it from parent

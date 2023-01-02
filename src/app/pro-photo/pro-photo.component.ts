@@ -50,13 +50,27 @@ export class ProPhotoComponent {
   loaded2: any = 0;
 
 
-
-
-
+activeClass:string="";
 
   // *****************************************************************************************************
   // IMAGE RELATED using ngx-lightbox for gallery: https://www.npmjs.com/package/ngx-lightbox
   // ***************************************************************************************************** 
+
+
+
+  // // download file test using file saver lib
+  // // https://stackoverflow.com/questions/35138424/how-do-i-download-a-file-with-angular2-or-greater
+  // downloadTest() {
+  //   this.http.get(this.dynamicimagepath, { responseType: "blob", headers: { 'Accept': 'application/pdf' } })
+  //     .subscribe(blob => {
+  //       // saveAs(blob, 'download.jpg');
+  //       // saveAs(blob); // will save with default name
+  //       const url = this.dynamicimagepath;
+  //       saveAs(blob, url.split("/").pop()) // will save with actual file name extracted from url
+  //     });
+  // }
+
+
 
   openLightbox(index: number): void {
     if (this.proPhotoData.length > 0) {
@@ -265,20 +279,21 @@ export class ProPhotoComponent {
       },
 
 
-      // columnDefs: [{
-      //   "orderable": false,
-      //   "targets": '_all'
-      // }],
+      columnDefs: [{
+        "orderable": false,
+        // "targets": '_all'
+        "targets": 7,
+      }],
       
       columns: [
         { data: 'ProjectID', title: "ProjectID", "visible": false },
         { data: 'ID', title: "ID", "visible": false },
-        { data: 'PhotoName', title: "PhotoName", width: "50px" },
+        { data: 'PhotoName', title: "PhotoName", width: "20%" },
         { data: 'ImageData', title: "ImageData", "visible": false },
         { data: 'CreatedBy', title: "CreatedBy", "visible": false },
         { data: 'LastModifiedBy', title: "LastModifiedBy", "visible": false },
-        { data: 'Description', title: "Description", width: "600px" },
-        { data: '', title: "Action", width: "350px" },
+        { data: 'Description', title: "Description" },
+        { data: '', title: "Action", width: "27%" },
 
 
       ]

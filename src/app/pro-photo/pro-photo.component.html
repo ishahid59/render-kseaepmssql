@@ -1,3 +1,8 @@
+
+<!-- download file test using file saver lib -->
+<!-- <button (click)="downloadTest()">downloadTest</button> -->
+
+
 <div class="form-group row" style="margin-bottom: 0px;margin-top: 0px;padding-right:15px ">
   <div class="col-sm-6" style="float: left;padding-right: 6px;">
     <!-- Datatable -->
@@ -8,13 +13,14 @@
         <tr class="bg-primary">
           <th scope="col" hidden>ProjectID</th>
           <th scope="col" hidden>ID</th>
-          <th scope="col" >PhotoName</th>
+          <th scope="col" style="width: 20%;">PhotoName</th>
           <th scope="col" hidden>ImageData</th>
           <th scope="col" hidden>CreatedBy</th>
           <th scope="col" hidden>LastModifiedBy</th>
           <th scope="col">Description</th>
           <!-- <th hidden="hidden">ID </th> -->
-          <th >Action</th>
+          <!-- <th >Action</th> -->
+          <th scope="col" style="text-align: center;width: 27%;">Action</th>
         </tr>
       </thead>
 
@@ -26,13 +32,13 @@
           <!-- <td><a (click)="test(item.ImageData)"
             style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer;">{{item.PhotoName}}</a></td> -->
           <td (click)="loadImageOnClick(item.ImageData, indexOfelement)"
-            style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer;">{{item.PhotoName}}</td>
+            style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer; width: 20%;">{{item.PhotoName}}</td>
 
           <td hidden>{{item.ImageData}}</td>
           <td hidden>{{item.CreatedBy}}</td>
           <td hidden>{{item.LastModifiedBy}}</td>
           <td>{{item.Description}}</td>
-          <td style="text-align: center;">
+          <td style="text-align: center;width: 27%;">
             <!-- <a routerLink="/Empdetail/{{item.empid}}">View</a> |
             <a (click)="showEmpEditModal(item)" id="test" data-toggle="modal" data-target="#empeditmodal" class=""
               style="cursor: pointer;">Edit</a> |

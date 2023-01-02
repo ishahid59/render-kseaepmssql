@@ -139,6 +139,11 @@ export class EmpDegreeComponent {
           });
         });
       },
+      columnDefs: [{
+        "orderable": false,
+        // "targets": '_all'
+        "targets": 7,
+      }],
       columns: [
         // { data: '', title: "id" }, 
         // { data: 'EmpID', title: "EmpID", width: "200px" },
