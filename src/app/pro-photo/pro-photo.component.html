@@ -1,13 +1,13 @@
 
 <!-- download file test using file saver lib -->
 <!-- <button (click)="downloadTest()">downloadTest</button>    -->
-
+<!-- <button id="btn" (click)="test()">Test</button>  -->
 
 <div class="form-group row" style="margin-bottom: 0px;margin-top: 0px;padding-right:15px ">
   <div class="col-sm-6" style="float: left;padding-right: 6px;">
     <!-- Datatable -->
     <!-- =================================================================================================== -->
-    <table  id="dt" datatable [dtOptions]="dtOptions" class="row-border hover table table-bordered table-striped"
+    <table  id="dtProPhoto" datatable [dtOptions]="dtOptions" class="display row-border hover table table-bordered table-striped"
       style="border:1px solid #bbbbbb;width:100%;" >
       <thead class="" style="border:1px solid red">
         <tr class="bg-primary">
@@ -25,7 +25,8 @@
       </thead>
 
       <tbody style="border:10px solid #c4c4c4 !important">
-        <tr *ngFor="let item of proPhotoData;let indexOfelement=index">
+        <!-- <tr *ngFor="let item of proPhotoData;let indexOfelement=index" (click)="selectRowOnClick(indexOfelement)" > -->
+          <tr *ngFor="let item of proPhotoData;let indexOfelement=index" (click)="selectRowOnClick(item.ImageData, indexOfelement)" >
           <td hidden>{{item.ProjectID}}</td>
           <td hidden>{{item.ID}}</td>
           <!-- <td>{{item.PhotoName}}</td> -->

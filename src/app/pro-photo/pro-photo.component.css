@@ -18,3 +18,12 @@ table.dataTable tbody td {
     height: 100%;
 }
 /* ========================================== */
+
+
+/* ProPhoto Datatable SELECTED ROW COLOR */
+tr.tr_selected {background-color:#fff7d1 !important;}
+
+  /* PHOTO  SELECTED ROW COLOR */
+  /* table.dataTable tbody tr.selected {
+    background-color: #fff7d1 !important;
+  } */

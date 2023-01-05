@@ -62,12 +62,19 @@ activeTabClass:string="";
  @ViewChild(EmpEditModalComponent)
  private empmainmodalcomponent!: EmpEditModalComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
 
+ // CALL CHILD METHOD
+ // used to show first row of prophotodt selected on load by calling child method  
+@ViewChild(ProPhotoComponent)
+private prophotocomponent!: ProPhotoComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
+
 
   //to use seperate child component for modal and call it from parent
   showEmpMainChildModal() {
     this.empmainmodalcomponent.showChildModal();
   }
-
+selectChildFirstRow(){
+  this.prophotocomponent.selectFirstRow();
+}
 
   ngOnInit() {
     // this.loadEmpDetail();

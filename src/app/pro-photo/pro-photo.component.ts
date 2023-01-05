@@ -108,6 +108,9 @@ activeClass:string="";
   // }
 
 
+
+
+
   //for gallery https://www.youtube.com/watch?v=WVkbpfux13E&list=PL5RuyRApxAq4yFHaf8nz2rLBSN3_Ihott&index=54&t=34s
   loadImageOnClick(item: any, index: any) {
      this.loading=true;
@@ -116,6 +119,45 @@ activeClass:string="";
     // this.open(index-1);
     this.clickedIndexOfDt = index;//-1; // save the clicked index to use by right photo to open current image in gallery
    }
+
+
+  // This method is called from Parent component emp-detail to select first row on load
+  // Selecting the first row from this component  in oninit is not working
+  selectFirstRow() {
+    // $('#dtProPhoto tbody').click();
+    // $("#dtProPhoto tbody td").css('background-color','red');
+
+    // $('#dtProPhoto > tbody  > tr').each(function(index, tr) { 
+    // $('#dtProPhoto > tbody  > tr:eq(0)').css("background-color","red");
+    //     console.log(index);
+    //     console.log(tr);
+    //  });
+
+    $('#dtProPhoto > tbody  > tr:eq(0)').addClass("tr_selected");
+
+  }
+
+
+
+  selectRowOnClick(item:any,index: any) {
+    /* Add a click handler to the rows - this could be used as a callback */
+    // $("#dtProPhoto tbody tr").on('click', function (event) {
+    //   $("#dtProPhoto tbody tr").removeClass('row_selected');
+    //   $(this).addClass('row_selected');
+    // });
+
+
+    $('#dtProPhoto tbody').on('click', 'tr', function () {
+      $("#dtProPhoto tbody tr").removeClass('tr_selected');
+      $(this).addClass('tr_selected');
+      // $("#dtProPhoto tbody tr:eq(0)").addClass('tr_selected');
+    });
+
+
+    // to also show the big photo on right pane on select row
+    this.loadImageOnClick(item, index) 
+  }
+
 
 
 
@@ -142,7 +184,7 @@ activeClass:string="";
     //   this.refreshDatatableProPhoto();// refresh instance of angular-datatable
     // })
     // this.fillimagegallerylist(242)
-   
+
   }
 
 
@@ -160,6 +202,7 @@ activeClass:string="";
       });
     });
 
+
     // **FIRST/INITIAL PHOTO LOAD Code is moved in datatable code to work
 
 
@@ -169,8 +212,16 @@ activeClass:string="";
     this.activatedRoute.paramMap.subscribe((param) => {
       this.childempid = param.get('id')
       this.refreshDatatableProPhoto();// refresh instance of angular-datatable
+      
     })
+    
+
+
   }
+
+
+
+
 
 
 
@@ -181,6 +232,7 @@ activeClass:string="";
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.draw();
     });
+    
   }
 
 
@@ -249,8 +301,8 @@ activeClass:string="";
             this.imagePathArray.push(this.commonService.baseUrl + '/img/prophoto/' + this.proPhotoData[i].ImageData)
           }
 
-          console.log(this._albums);
-          console.log(this.imagePathArray);// to preload images
+          // console.log(this._albums);
+          // console.log(this.imagePathArray);// to preload images
 
 
      // PRELOAD IMAGES 
@@ -259,7 +311,7 @@ activeClass:string="";
       //   $('<img />').attr('src', this).appendTo('body').css('display', 'none');
       // });
 
-
+      
 
 
           // ******************************************************************************************
@@ -299,6 +351,10 @@ activeClass:string="";
       ]
 
     };
+
+    
+
+
 
   }
 

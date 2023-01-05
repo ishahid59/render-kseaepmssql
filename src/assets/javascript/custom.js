@@ -23,16 +23,46 @@ function getEditData(empid) {
 
 
 // *** to clear token on tab/browser close
-$(document).ready(function () {
+// $(document).ready(function () {
     // window.onbeforeunload = function () {
     //     localStorage.removeItem("token");
     //     return '';
     // };
+
+// });
+
+
+
+/* ProPhoto Datatable SELECTED ROW  */
+$(document).ready(function () {
+    var table = $('#dtProPhoto').DataTable();
+ 
+//     $('#dtProPhoto tbody').on('click', 'tr', function () {
+//         if ($(this).hasClass('selected')) {
+//             $(this).removeClass('selected');
+//         } else {
+//             table.$('tr.selected').removeClass('selected');
+//             $(this).addClass('selected');
+//         }
+//     });
+ 
+//     $('#button').click(function () {
+//         table.row('.selected').remove().draw(false);
+//     });
+// });
+
+
+/* ProPhoto Datatable SELECTED ROW  */
+// $(document).ready(function () {
+//     $('#dt tbody').on('click', 'tr', function () {
+//         $("#dtProPhoto tbody tr").removeClass('tr_selected');
+//         $(this).addClass('tr_selected');
+//     });
+
+
+// $("#dtProPhoto tbody tr").addClass('tr_selected');
+// var table = $('#dtProPhoto').DataTable();
 });
-
-
-
-
 
 
 
