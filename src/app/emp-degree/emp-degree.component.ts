@@ -37,11 +37,12 @@ export class EmpDegreeComponent {
 
     // ngOnInit is called only once. So for all next calls Observable is used so that it can always listen
     // https://www.youtube.com/watch?v=b4zpvh_saic&list=PL1BztTYDF-QNrtkvjkT6Wjc8es7QB4Gty&index=65
-    if (!this.componentLoaded) {
-      this.loadDatatableEmpDegree(); //loadDatatableEmpDegree() has to be called for first time only. Then refreshDatatableEmpDegree() is called everytime
-      this.componentLoaded = false;
-    }
-
+    // if (!this.componentLoaded) {
+    //   this.loadDatatableEmpDegree(); //loadDatatableEmpDegree() has to be called for first time only. Then refreshDatatableEmpDegree() is called everytime
+    //   this.componentLoaded = false;
+    // }
+    this.loadDatatableEmpDegree(); //loadDatatableEmpDegree() has to be called for first time only. Then refreshDatatableEmpDegree() is called everytime
+    this.componentLoaded = true;
 
     // // following observer code moved from ngOnInit() to ngAfterViewInit() since datatable instance is not created yet to be refreshed
       // this.activatedRoute.paramMap.subscribe((param) => {
@@ -74,8 +75,12 @@ export class EmpDegreeComponent {
     // // following observer code moved from ngOnInit() to here ngAfterViewInit()
     this.activatedRoute.paramMap.subscribe((param) => {
       this.childempid = param.get('id')
+      if (!this.componentLoaded) {
       this.refreshDatatableEmpDegree();// refresh instance of angular-datatable
+      }
     })
+
+    // alert("ngAfterViewInit empdegree");
   }
 
 
@@ -85,6 +90,7 @@ export class EmpDegreeComponent {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.draw();
     });
+
   }
 
 
