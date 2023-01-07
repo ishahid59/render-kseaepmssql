@@ -35,7 +35,7 @@ function getEditData(empid) {
 
 /* ProPhoto Datatable SELECTED ROW  */
 $(document).ready(function () {
-    var table = $('#dtProPhoto').DataTable();
+    // var table = $('#dtProPhoto').DataTable();
  
 //     $('#dtProPhoto tbody').on('click', 'tr', function () {
 //         if ($(this).hasClass('selected')) {
