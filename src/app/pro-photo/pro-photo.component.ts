@@ -315,10 +315,10 @@ activeClass:string="";
           // console.log(this._albums);
           // console.log(this.imagePathArray);// to preload images
 
-
-          if (this.proPhotoData?.length > 0) {
-            this.firstRowSelectIndex = 0;
-          }
+          // not needed
+          // if (this.proPhotoData?.length > 0) {
+          //   this.firstRowSelectIndex = 0;
+          // }
 
      // PRELOAD IMAGES 
      // javascript: https://stackoverflow.com/questions/476679/preloading-images-with-jquery  
