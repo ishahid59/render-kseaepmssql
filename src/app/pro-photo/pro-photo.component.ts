@@ -225,9 +225,10 @@ activeClass:string="";
     // // following observer code moved from ngOnInit() to here ngAfterViewInit()
     this.activatedRoute.paramMap.subscribe((param) => {
       this.childempid = param.get('id')
-      // if (!this.componentLoaded) {
+      if (!this.componentLoaded) { // to avoid refreshDatatableProPhoto when dt loads first time
         this.refreshDatatableProPhoto();// refresh instance of angular-datatable
-      // }
+      }
+      this.componentLoaded=false;
     })
 
   }
@@ -264,7 +265,7 @@ activeClass:string="";
         this.http.post<any>(
           // '' + that.commonService.baseUrl + '/api/empdegree/empdegree-angular-datatable',
           // '' + that.commonService.baseUrl + '/api/empdegree/'+this.childempid,
-          '' + that.commonService.baseUrl + '/api/prophoto/241',//242',241',//+this.childempid,
+          '' + that.commonService.baseUrl + '/api/prophoto/242',//242',241',//+this.childempid,
 
           Object.assign(dataTablesParameters,
             {

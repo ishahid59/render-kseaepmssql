@@ -66,13 +66,13 @@ activeTabClass:string="";
  // CALL CHILD METHOD
  // used to show first row of prophotodt selected on load by calling child method  
 // Not using.
-@ViewChild(ProPhotoComponent)
-private prophotocomponent!: ProPhotoComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
+// @ViewChild(ProPhotoComponent)
+// private prophotocomponent!: ProPhotoComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
 
 
 // Not using.
-@ViewChild(EmpDegreeComponent)
-private empdegreeomponent!: EmpDegreeComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
+// @ViewChild(EmpDegreeComponent)
+// private empdegreeomponent!: EmpDegreeComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
 
 
 

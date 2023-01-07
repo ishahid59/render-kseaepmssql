@@ -75,12 +75,13 @@ export class EmpDegreeComponent {
     // // following observer code moved from ngOnInit() to here ngAfterViewInit()
     this.activatedRoute.paramMap.subscribe((param) => {
       this.childempid = param.get('id')
-      // if (this.componentLoaded) {
+      if (!this.componentLoaded) { // to avoid refreshDatatableProPhoto when dt loads first time
         this.refreshDatatableEmpDegree();// refresh instance of angular-datatable
-      // }
+      }
+      this.componentLoaded=false;
     })
 
-    // alert("ngAfterViewInit empdegree");
+    
   }
 
 
