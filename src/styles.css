@@ -18,7 +18,7 @@
 
 
 /* common for all datatable where data is within by jquery code */
-#dtEmpployee.table>tbody>tr>td,
+#dtEmployee.table>tbody>tr>td,
 #dtEmployeeSearch.table>tbody>tr>td,
 #dtEmpDegree.table>tbody>tr>td,
 #jquerydatatable.table>tbody>tr>td,

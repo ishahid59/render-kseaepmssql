@@ -51,7 +51,8 @@ export class ProPhotoComponent {
 
   // This is created to use as 1st row index in html to select the first row.If no record then index will return null written in datatable code
   // as [class.tr_selected]="indexOfelement == firstRowSelectIndex"
-  firstRowSelectIndex:any =null;
+  // Not needed 
+  // firstRowSelectIndex:any =null;
 
 
 activeClass:string="";
