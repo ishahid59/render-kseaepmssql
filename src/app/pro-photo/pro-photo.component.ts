@@ -221,8 +221,7 @@ activeClass:string="";
     this.activatedRoute.paramMap.subscribe((param) => {
       this.childempid = param.get('id')
 
-      // Initially dt will not load. Load only when tab clicked. refreshDatatableProPhoto() is called from Emp-detail component
-      // this.refreshDatatableProPhoto();// refresh instance of angular-datatable
+      this.refreshDatatableProPhoto();// refresh instance of angular-datatable
       
     })
     
