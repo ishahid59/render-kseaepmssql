@@ -49,6 +49,10 @@ export class ProPhotoComponent {
   imagePathArray: any = []; // used for preload images
   loaded2: any = 0;
 
+  // This is created to use as 1st row index in html to select the first row.If no record then index will return null written in datatable code
+  // as [class.tr_selected]="indexOfelement == firstRowSelectIndex"
+  firstRowSelectIndex:any =null;
+
 
 activeClass:string="";
 
@@ -121,11 +125,11 @@ activeClass:string="";
    }
 
 
+
+  // Not using. Using in html [class.tr_selected]="indexOfelement == 0
   // This method is called from Parent component emp-detail to select first row on load
   // Selecting the first row from this component  in oninit is not working
   selectFirstRow() {
-    // $('#dtProPhoto tbody').click();
-    // $("#dtProPhoto tbody td").css('background-color','red');
 
     // $('#dtProPhoto > tbody  > tr').each(function(index, tr) { 
     // $('#dtProPhoto > tbody  > tr:eq(0)').css("background-color","red");
@@ -133,7 +137,8 @@ activeClass:string="";
     //     console.log(tr);
     //  });
 
-    $('#dtProPhoto > tbody  > tr:eq(0)').addClass("tr_selected");
+    // Not using. Using in html [class.tr_selected]="indexOfelement == 0
+    // $('#dtProPhoto > tbody  > tr:eq(0)').addClass("tr_selected");
 
   }
 
@@ -147,6 +152,8 @@ activeClass:string="";
     // });
 
 
+
+
     $('#dtProPhoto tbody').on('click', 'tr', function () {
       $("#dtProPhoto tbody tr").removeClass('tr_selected');
       $(this).addClass('tr_selected');
@@ -154,7 +161,7 @@ activeClass:string="";
     });
 
 
-    // to also show the big photo on right pane on select row
+    // to also show the big photo on right pane on select row anywhere on tr. 
     this.loadImageOnClick(item, index) 
   }
 
@@ -178,6 +185,7 @@ activeClass:string="";
       this.loadDatatableProPhoto(); //loadDatatableProPhoto() has to be called for first time only. Then refreshDatatableProPhoto() is called everytime
       this.componentLoaded = false;
     }
+    
     // // following observer code moved from ngOnInit() to ngAfterViewInit() since datatable instance is not created yet to be refreshed
     // this.activatedRoute.paramMap.subscribe((param) => {
     //   this.childempid = param.get('id')
@@ -196,6 +204,7 @@ activeClass:string="";
     var that = this;
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.on('draw.dt', function () {
+        // dtInstance.on('draw.dtProPhoto', function () {
         if (that.proPhotoData.length > 0) {
           $('.dataTables_empty').remove();
         }
@@ -211,11 +220,13 @@ activeClass:string="";
     // // following observer code moved from ngOnInit() to here ngAfterViewInit()
     this.activatedRoute.paramMap.subscribe((param) => {
       this.childempid = param.get('id')
-      this.refreshDatatableProPhoto();// refresh instance of angular-datatable
+
+      // Initially dt will not load. Load only when tab clicked. refreshDatatableProPhoto() is called from Emp-detail component
+      // this.refreshDatatableProPhoto();// refresh instance of angular-datatable
       
     })
     
-
+    
 
   }
 
@@ -304,6 +315,10 @@ activeClass:string="";
           // console.log(this._albums);
           // console.log(this.imagePathArray);// to preload images
 
+
+          if (this.proPhotoData?.length > 0) {
+            this.firstRowSelectIndex = 0;
+          }
 
      // PRELOAD IMAGES 
      // javascript: https://stackoverflow.com/questions/476679/preloading-images-with-jquery  

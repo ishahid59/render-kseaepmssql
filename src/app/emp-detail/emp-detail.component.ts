@@ -62,19 +62,46 @@ activeTabClass:string="";
  @ViewChild(EmpEditModalComponent)
  private empmainmodalcomponent!: EmpEditModalComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
 
+ // Not using. Using in html [class.tr_selected]="indexOfelement == 0 in pro-photo.html
  // CALL CHILD METHOD
  // used to show first row of prophotodt selected on load by calling child method  
-@ViewChild(ProPhotoComponent)
-private prophotocomponent!: ProPhotoComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
+// Not using.
+// @ViewChild(ProPhotoComponent)
+// private prophotocomponent!: ProPhotoComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
+
+
+// Not using.
+// @ViewChild(EmpDegreeComponent)
+// private empdegreeomponent!: EmpDegreeComponent;//https://stackoverflow.com/questions/54104187/typescript-complain-has-no-initializer-and-is-not-definitely-assigned-in-the-co
+
 
 
   //to use seperate child component for modal and call it from parent
   showEmpMainChildModal() {
     this.empmainmodalcomponent.showChildModal();
   }
-selectChildFirstRow(){
-  this.prophotocomponent.selectFirstRow();
-}
+
+  
+
+  // Not using. Using in html [class.tr_selected]="indexOfelement == 0 in pro-photo.html
+  // selectChildFirstRow() {
+  //   this.prophotocomponent.selectFirstRow();
+  // }
+
+
+  // not using now
+  // // refresh/reload child ProPhotodatatable on tab click
+  // refreshChildProPhoto() {
+  //   this.prophotocomponent.refreshDatatableProPhoto();
+  // }
+
+
+  // not using now
+  // // refresh/reload child EmpDegreedatatable on tab click
+  // refreshChildEmpDegree() {
+  //   this.empdegreeomponent.refreshDatatableEmpDegree();
+  // }
+
 
   ngOnInit() {
     // this.loadEmpDetail();
@@ -95,6 +122,7 @@ selectChildFirstRow(){
       this.emp = this.loadEmpDetail();
       this.findid=this.id; // set the initial value findid
     })
+    
 
   }
 

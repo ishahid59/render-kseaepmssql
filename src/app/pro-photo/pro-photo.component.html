@@ -24,34 +24,46 @@
         </tr>
       </thead>
 
-      <tbody style="border:10px solid #c4c4c4 !important">
-        <!-- <tr *ngFor="let item of proPhotoData;let indexOfelement=index" (click)="selectRowOnClick(indexOfelement)" > -->
-          <tr *ngFor="let item of proPhotoData;let indexOfelement=index" (click)="selectRowOnClick(item.ImageData, indexOfelement)" >
-          <td hidden>{{item.ProjectID}}</td>
-          <td hidden>{{item.ID}}</td>
-          <!-- <td>{{item.PhotoName}}</td> -->
-          <!-- <td><a (click)="test(item.ImageData)"
-            style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer;">{{item.PhotoName}}</a></td> -->
-          <td (click)="loadImageOnClick(item.ImageData, indexOfelement)"
-            style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer; width: 20%;">{{item.PhotoName}}</td>
-
-          <td hidden>{{item.ImageData}}</td>
-          <td hidden>{{item.CreatedBy}}</td>
-          <td hidden>{{item.LastModifiedBy}}</td>
-          <td>{{item.Description}}</td>
-          <td style="text-align: center;width: 27%;">
-            <!-- <a routerLink="/Empdetail/{{item.empid}}">View</a> |
-            <a (click)="showEmpEditModal(item)" id="test" data-toggle="modal" data-target="#empeditmodal" class=""
-              style="cursor: pointer;">Edit</a> |
-            <a (click)="deleteEmp(item)" id="test" class="" style="cursor: pointer;">Delete</a> -->
-
-            <a routerLink="">View</a> |
-            <a routerLink="">Edit</a> |
-            <a routerLink="">Delete</a>
-
-          </td>
-        </tr>
-      </tbody>
+      
+        <tbody style="border:10px solid #c4c4c4 !important">
+          <!-- <tr *ngFor="let item of proPhotoData;let indexOfelement=index" (click)="selectRowOnClick(indexOfelement)" > -->
+          <!-- [class.tr_selected]="indexOfelement == 0 used to select first row on table load.  https://stackoverflow.com/questions/58855798/angular-datatables-select-row-programmatically -->
+          <!-- <div *ngIf="proPhotoData?.length>0"> -->
+          <!-- <div *ngIf="proPhotoData?.length > 0"> -->
+          <!-- <tr *ngFor="let item of proPhotoData;let indexOfelement=index"
+                    (click)="selectRowOnClick(item.ImageData, indexOfelement)" [class.tr_selected]="indexOfelement == firstRowSelectIndex"> -->
+            
+            <!-- [class.tr_selected]="indexOfelement == 0 used to select first row on table load.  https://stackoverflow.com/questions/58855798/angular-datatables-select-row-programmatically -->
+            <tr *ngFor="let item of proPhotoData;let indexOfelement=index"
+            (click)="selectRowOnClick(item.ImageData, indexOfelement)" [class.tr_selected]="indexOfelement == 0">
+        
+            <td hidden>{{item.ProjectID}}</td>
+            <td hidden>{{item.ID}}</td>
+            <!-- <td>{{item.PhotoName}}</td> -->
+            <!-- <td><a (click)="test(item.ImageData)"
+                                style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer;">{{item.PhotoName}}</a></td> -->
+            <td (click)="loadImageOnClick(item.ImageData, indexOfelement)"
+              style="text-decoration: underline;color:rgb(9, 85, 166);cursor: pointer; width: 20%;">{{item.PhotoName}}</td>
+        
+            <td hidden>{{item.ImageData}}</td>
+            <td hidden>{{item.CreatedBy}}</td>
+            <td hidden>{{item.LastModifiedBy}}</td>
+            <td>{{item.Description}}</td>
+            <td style="text-align: center;width: 27%;">
+              <!-- <a routerLink="/Empdetail/{{item.empid}}">View</a> |
+                                <a (click)="showEmpEditModal(item)" id="test" data-toggle="modal" data-target="#empeditmodal" class=""
+                                  style="cursor: pointer;">Edit</a> |
+                                <a (click)="deleteEmp(item)" id="test" class="" style="cursor: pointer;">Delete</a> -->
+        
+              <a routerLink="">View</a> |
+              <a routerLink="">Edit</a> |
+              <a routerLink="">Delete</a>
+        
+            </td>
+          </tr>
+          <!-- </div> -->
+        </tbody>
+      
     </table>
   </div>
 

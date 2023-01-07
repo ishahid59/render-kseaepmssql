@@ -211,7 +211,7 @@ export class JquerydatatableComponent {
     this.searchLastname = "";
     this.searchJobtitle = 0;
     this.searchRegistration = 0;
-    $('#dt').DataTable().search('').draw();//clear dt text search input
+    $('#jquerydatatable').DataTable().search('').draw();//clear dt text search input
     this.searchJqueryTable();
   }
 

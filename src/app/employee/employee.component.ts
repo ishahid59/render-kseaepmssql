@@ -288,6 +288,7 @@ export class EmployeeComponent {
     var that = this;
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.on('draw.dt', function () {
+        // dtInstance.on('draw.dtEmployee', function () {
         if (that.myData.length > 0) {
           $('.dataTables_empty').remove();
         }
@@ -334,7 +335,7 @@ export class EmployeeComponent {
     this.searchLastname = "";
     this.searchJobtitle = 0;
     this.searchRegistration = 0;
-    $('#dt').DataTable().search('').draw();//clear dt text search input
+    $('#dtEmployee').DataTable().search('').draw();//clear dt text search input
     this.search();
   }
 

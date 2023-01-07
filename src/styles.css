@@ -18,7 +18,9 @@
 
 
 /* common for all datatable where data is within by jquery code */
-#dt.table>tbody>tr>td,
+#dtEmpployee.table>tbody>tr>td,
+#dtEmployeeSearch.table>tbody>tr>td,
+#dtEmpDegree.table>tbody>tr>td,
 #jquerydatatable.table>tbody>tr>td,
 #dtProPhoto.table>tbody>tr>td
  {
@@ -35,9 +37,12 @@
     float: left !important;
 }
 
-#dt.table {
+#dtEmpDegree.table,#dtProPhoto.table#dtEmployee.table,#dtEmployeeSearch.table {
     /* border-bottom: 0px solid #e4e4e4; */
     border:1px solid #bbbbbb;
     border-bottom:0;
     border-top:0;
 }
+/* .dataTables_empty {
+    display: none !important;
+  } */

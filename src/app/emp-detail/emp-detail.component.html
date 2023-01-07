@@ -241,16 +241,24 @@
               <a id="empprojectlinktab" data-toggle="tab" href="#empprojecttab" style="border-color: #b2b2b2;padding-top:6px;padding-bottom: 6px;">Employee Projects</a>
             </li> -->
         <li class="active">
-          <a id="degreelinktab" data-toggle="tab" href="#degreetab"
+          <!-- <a id="degreelinktab" data-toggle="tab" href="#degreetab" (click)="refreshChildEmpDegree()"
+            style="border-color: #b2b2b2;border-bottom-color: #e2e2e2;padding-top:6px;padding-bottom: 6px;">Degree</a> -->
+            <a id="degreelinktab" data-toggle="tab" href="#degreetab" 
             style="border-color: #b2b2b2;border-bottom-color: #e2e2e2;padding-top:6px;padding-bottom: 6px;">Degree</a>
-        </li>
+
+          </li>
         <li>
           <a id="reglinktab" data-toggle="tab"  href="#regtab"
             style="border-color: #a4a4a4;border-bottom-color: #e2e2e2;padding-top:6px;padding-bottom: 6px;">Registration</a>
         </li>
         <li>
-          <a id="prophotolinktab" data-toggle="tab"  href="#prophototab" (click)="selectChildFirstRow()"
-            style="border-color: #a4a4a4;border-bottom-color: #e2e2e2;padding-top:6px;padding-bottom: 6px;">Project Photos</a>
+          <!-- tab "(click) = selectChildFirstRow" used to call child mathod to select first row of datatable  -->
+          <!-- <a id="prophotolinktab" data-toggle="tab"  href="#prophototab" (click)="selectChildFirstRow()" not using. Now using [class.tr_selected]="indexOfelement == 0 in pro-photo.html-->
+          <!-- <a id="prophotolinktab" data-toggle="tab"  href="#prophototab" (click)="refreshChildProPhoto()"
+          style="border-color: #a4a4a4;border-bottom-color: #e2e2e2;padding-top:6px;padding-bottom: 6px;">Project Photos</a> -->
+          <a id="prophotolinktab" data-toggle="tab"  href="#prophototab" 
+          style="border-color: #a4a4a4;border-bottom-color: #e2e2e2;padding-top:6px;padding-bottom: 6px;">Project Photos</a>
+
         </li>
       </ul>
     

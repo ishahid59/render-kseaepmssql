@@ -61,6 +61,7 @@ export class EmpDegreeComponent {
     var that = this;
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.on('draw.dt', function () {
+      // dtInstance.on('draw.dtEmpDegree', function () {
         if (that.empDegreeData.length > 0) {
           $('.dataTables_empty').remove();
         }
@@ -75,7 +76,6 @@ export class EmpDegreeComponent {
       this.childempid = param.get('id')
       this.refreshDatatableEmpDegree();// refresh instance of angular-datatable
     })
-
   }
 
 
