@@ -160,8 +160,8 @@ private empdegreeomponent!: EmpDegreeComponent;//https://stackoverflow.com/quest
       // this.empdegreecomponent.loadAngularDatatable();
     // }, 3);
 
-    this.empdegreeomponent.refreshDatatableEmpDegree();
-    this.prophotocomponent.refreshDatatableProPhoto();
+    // this.empdegreeomponent.refreshDatatableEmpDegree();
+    // this.prophotocomponent.refreshDatatableProPhoto();
   }
 
 
